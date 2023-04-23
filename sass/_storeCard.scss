@@ -1,52 +1,39 @@
 nav {
-  position: sticky;
-  top: 0;
-  .dropDownItem {
-    position: relative;
-    display: inline-block;
-    margin-left: 5rem;
-    .drowDownStores {
-      background-color: #04aa6d;
-      color: white;
-      padding: 16px;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
-    }
-    .stores-Side-Nav {
-      display: none;
-      position: absolute;
-      background-color: $darkestIndigo;
-      width: 300px;
-      list-style: none;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      z-index: 3;
-      transform: translateX(-5rem);
-      .card {
-        height: 100px;
-        width: 100%;
-        display: block;
-        cursor: pointer;
-        text-align: center;
-        color: $greyShade;
-        img {
-          display: inline-block;
-          object-fit: contain;
-          width: 50px;
-          height: 50px;
-        }
-        h2 {
-          font-size: 25px;
-        }
-      }
-    }
+  position: fixed;
 
-    &:hover .stores-Side-Nav {
+  top: 10%;
+
+  .stores-Side-Nav {
+    position: absolute;
+    width: 300px;
+    list-style: none;
+
+    height: 50vh;
+    height: 50svh;
+    overflow: scroll;
+    overflow-x: hidden;
+
+    .card {
       display: flex;
       flex-direction: row;
-      z-index: 3;
-      flex-wrap: wrap;
+      height: 100px;
+      width: 100%;
+      margin-bottom: 1em;
+      cursor: pointer;
+      text-align: center;
+      color: $greyShade;
+      background-color: black;
+      align-items: center;
       gap: 1rem;
+      img {
+        display: inline-block;
+        object-fit: contain;
+        width: 50px;
+        height: 50px;
+      }
+      h2 {
+        font-size: 25px;
+      }
     }
   }
 }
