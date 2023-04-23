@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #312e81;
+}
+
+header {
+  position: sticky;
+  top: 0;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+}
+nav .dropDownItem {
+  position: relative;
+  display: inline-block;
+  margin-left: 5rem;
+}
+nav .dropDownItem .drowDownStores {
+  background-color: #04aa6d;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+nav .dropDownItem .stores-Side-Nav {
+  display: none;
+  position: absolute;
+  background-color: #1e1b4b;
+  width: 300px;
+  list-style: none;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  transform: translateX(-5rem);
+}
+nav .dropDownItem .stores-Side-Nav .card {
+  height: 100px;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+  text-align: center;
+  color: #cbd5e1;
+}
+nav .dropDownItem .stores-Side-Nav .card img {
+  display: inline-block;
+  object-fit: contain;
+  width: 50px;
+  height: 50px;
+}
+nav .dropDownItem .stores-Side-Nav .card h2 {
+  font-size: 25px;
+}
+nav .dropDownItem:hover .stores-Side-Nav {
+  display: flex;
+  flex-direction: row;
+  z-index: 3;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.gameCards {
+  position: absolute;
+  top: 10%;
+  margin-left: 30% auto;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.gameCards .game {
+  width: 250px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  background-color: #cbd5e1;
+  text-align: center;
+  color: #374151;
+  border-radius: 8px;
+}
+.gameCards img {
+  height: 30%;
+  width: 90%;
+  margin: 1rem auto;
+  object-fit: contain;
+}
+.gameCards .normPrice {
+  text-decoration: line-through;
+}

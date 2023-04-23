@@ -1,0 +1,28 @@
+.gameCards {
+  position: absolute;
+  top: 10%;
+  margin-left: 30% auto;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  flex-wrap: wrap;
+  .game {
+    width: 250px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    background-color: $greyShade;
+    text-align: center;
+    color: $greyDark;
+    border-radius: 8px;
+  }
+  img {
+    height: 30%;
+    width: 90%;
+    margin: 1rem auto;
+    object-fit: contain;
+  }
+  .normPrice {
+    text-decoration: line-through;
+  }
+}
