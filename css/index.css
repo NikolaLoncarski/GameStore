@@ -12,35 +12,58 @@ body {
 }
 
 header {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  z-index: 3;
+  background-color: #374151;
+  width: 100vw;
+}
+header .menuButton {
+  height: 30px;
+  width: 100px;
+  object-fit: contain;
+  position: absolute;
+  top: 1rem;
+  left: 0.5rem;
+}
+header .menuButton:hover {
+  color: #cbd5e1;
+}
+
+h1 {
+  text-align: center;
+  color: #cbd5e1;
+  font-weight: 900;
+  transform: skewX(15deg);
+}
+
+ul {
+  padding: 0;
 }
 
 nav {
-  position: fixed;
-  top: 10%;
+  margin: 1rem 2rem 1rem 2rem;
 }
 nav .stores-Side-Nav {
-  position: absolute;
-  width: 300px;
+  min-width: 100%;
   list-style: none;
-  height: 50vh;
-  height: 50svh;
+  height: fit-content;
   overflow: scroll;
-  overflow-x: hidden;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: row;
 }
 nav .stores-Side-Nav .card {
   display: flex;
   flex-direction: row;
   height: 100px;
-  width: 100%;
-  margin-bottom: 1em;
+  width: 300px;
   cursor: pointer;
   text-align: center;
   color: #cbd5e1;
   background-color: black;
   align-items: center;
   gap: 1rem;
+  margin-right: 1em;
 }
 nav .stores-Side-Nav .card img {
   display: inline-block;
@@ -53,20 +76,26 @@ nav .stores-Side-Nav .card h2 {
 }
 
 .gameCards {
+  z-index: 1;
   position: absolute;
-  top: 10%;
-  margin: 0 350px 0 350px;
+  left: 50%;
+  top: 200px;
+  transform: translateX(-50%);
+  margin: 2rem auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 3rem;
   width: 80%;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 .gameCards .game {
-  width: 80%;
-  height: 100px;
-  display: flex;
-  flex-direction: row;
+  width: 450px;
+  height: 600px;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
   background-color: #cbd5e1;
   text-align: center;
   color: #374151;
@@ -74,10 +103,37 @@ nav .stores-Side-Nav .card h2 {
   align-items: center;
 }
 .gameCards img {
-  height: 50%;
-  width: fit-content;
-  object-fit: contain;
+  grid-column: span 2;
+  justify-self: center;
+  height: 100%;
+  object-fit: cover;
+}
+.gameCards .gameTitle {
+  grid-column: span 2;
+  font-size: 30px;
+  font-weight: 700;
+}
+.gameCards .gamePrices {
+  grid-column: span 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
 }
 .gameCards .normPrice {
   text-decoration: line-through;
+}
+.gameCards .moneySaved {
+  font-size: 12px;
+}
+.gameCards .price {
+  font-size: 20px;
+}
+.gameCards a {
+  grid-column: span 2;
+  font-size: 30px;
+  text-decoration: none;
+  color: #1e1b4b;
+  border: 1px solid #1e1b4b;
 }

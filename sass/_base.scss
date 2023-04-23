@@ -15,6 +15,29 @@ body {
   background-color: $darkIndigo;
 }
 header {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  z-index: 3;
+  background-color: #374151;
+  width: 100vw;
+  .menuButton {
+    height: 30px;
+    width: 100px;
+    object-fit: contain;
+    position: absolute;
+    top: 1rem;
+    left: 0.5rem;
+
+    &:hover {
+      color: #cbd5e1;
+    }
+  }
+}
+h1 {
+  text-align: center;
+  color: #cbd5e1;
+  font-weight: 900;
+  transform: skewX(15deg);
+}
+ul {
+  padding: 0;
 }
