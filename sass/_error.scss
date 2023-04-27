@@ -1,0 +1,31 @@
+.Error {
+  position: absolute;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: $darkestIndigo;
+  height: 200px;
+  width: 400px;
+  text-align: center;
+  border-radius: 8px;
+  animation: 1s ease-out forwards;
+}
+h2 {
+  color: red;
+  margin: 0;
+  line-height: 200px;
+}
+
+@keyframes errorAnim {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

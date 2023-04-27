@@ -3,7 +3,10 @@ const nav = document.querySelector("nav");
 const storesNav = document.querySelector(".stores-Side-Nav");
 const gameCards = document.querySelector(".gameCards");
 const menuButton = document.querySelector(".menuButton");
+const numbOfGames = document.querySelector(".numbOfGames");
+const errorModal = document.querySelector(".Error");
 let gameInfo = [];
+
 let cart = [];
 if (!localStorage.getItem("gamesInCart")) {
   cart = [];
@@ -45,6 +48,7 @@ const fetchStores = async function () {
   const gameStores = document.querySelectorAll("[data-id]");
   gameStores.forEach((ele) => {
     ele.addEventListener("click", () => {
+      removeAllChildNodes(gameCards);
       fetchGames(ele.dataset.id);
     });
   });
@@ -58,8 +62,10 @@ const fetchGames = async (id) => {
   );
 
   const gameData = await fetchGameData.json();
+
   console.log(gameData);
   gamesData(gameData);
+
   createCards(gameInfo[0]);
 };
 
@@ -80,6 +86,7 @@ menuButton.addEventListener("click", () => {
 
 ////------stores data in an array outside the api call--------/////////
 function gamesData(games) {
+  gameInfo = [];
   gameInfo.push(games);
 }
 function cartGames(games) {
@@ -112,9 +119,13 @@ const createCards = (cardElements) => {
     gameTitle.classList.add("gameTitle");
     gameTitle.innerText = title;
 
+    const imageContainer = document.createElement("div");
+    imageContainer.classList.add("imageContainer");
+
     const gameThumb = document.createElement("img");
     gameThumb.src = `${thumb}`;
 
+    imageContainer.append(gameThumb);
     //--------------Prices ------------//
     const gamePrices = document.createElement("div");
     gamePrices.classList.add("gamePrices");
@@ -151,30 +162,39 @@ const createCards = (cardElements) => {
     }
 
     gameCard.appendChild(gameTitle);
-    gameCard.prepend(gameThumb);
+    gameCard.prepend(imageContainer);
     gameCard.append(gamePrices);
     gameCard.append(gameReleaseDate);
     gameCard.append(saveButton);
     gameCards.appendChild(gameCard);
+
     ///Check if there is a realse date information
+    const gameInfoLink = document.createElement("a");
+    gameInfoLink.href = `https://www.metacritic.com${metacriticLink}`;
     if (metacriticLink) {
-      const gameInfoLink = document.createElement("a");
-      gameInfoLink.href = `https://www.metacritic.com${metacriticLink}`;
       gameInfoLink.target = "_blank";
-      gameInfoLink.text = "More Info...";
-      gameCard.appendChild(gameInfoLink);
+      gameInfoLink.text = "More Information";
+    } else {
+      gameInfoLink.text = "More Information not available";
     }
+    gameCard.appendChild(gameInfoLink);
+
     saveButton.addEventListener("click", () => {
-      // cartGames(ele);
-      // console.log(cart);
-      cart.push(ele);
-      let existingData = localStorage.getItem("gamesInCart");
-      existingData = existingData ? existingData.split(",") : [];
-      existingData.push(ele);
-      // console.log(JSON.parse(localStorage.getItem("gamesInCart")));
-      // cart.push(JSON.parse(localStorage.getItem("gamesInCart")));
-      localStorage.gamesInCart = JSON.stringify(cart);
-      // localStorage.setItem("gamesInCart", JSON.stringify(...cart));
+      errorModal.classList.remove("displayError");
+      if (!cart.includes(ele)) {
+        cart.push(ele);
+        numbOfGames.textContent = `${cart.length - 1}`;
+
+        let existingData = localStorage.getItem("gamesInCart");
+
+        existingData = existingData ? existingData.split(",") : [];
+
+        existingData.push(ele);
+
+        localStorage.gamesInCart = JSON.stringify(cart);
+      } else {
+        errorModal.classList.add("displayError");
+      }
     });
   });
 };
