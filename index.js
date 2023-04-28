@@ -4,7 +4,11 @@ const storesNav = document.querySelector(".stores-Side-Nav");
 const gameCards = document.querySelector(".gameCards");
 const menuButton = document.querySelector(".menuButton");
 const numbOfGames = document.querySelector(".numbOfGames");
-const errorModal = document.querySelector(".Error");
+const spinerAnim = document.querySelector(".lds-ring");
+
+const searchGames = document.querySelector(".searchBar");
+
+const searchBtn = document.querySelector(".search");
 let gameInfo = [];
 
 let cart = [];
@@ -56,11 +60,12 @@ const fetchStores = async function () {
 fetchStores();
 
 ///// fethces individual store games
-const fetchGames = async (id) => {
+const fetchGames = async (id, sort = "Price") => {
+  spinerAnim.style.display = "inline-block";
   const fetchGameData = await fetch(
-    `https://www.cheapshark.com/api/1.0/deals?storeID=${id}`
+    `https://www.cheapshark.com/api/1.0/deals?storeID=${id}&sortBy=${sort}`
   );
-
+  spinerAnim.style.display = "none";
   const gameData = await fetchGameData.json();
 
   console.log(gameData);
@@ -146,6 +151,10 @@ const createCards = (cardElements) => {
     saveButton.classList.add("saveButton");
     saveButton.innerText = "Save to Cart";
 
+    const gameSaved = document.createElement("div");
+    gameSaved.classList.add("gameSaved");
+    gameSaved.innerHTML = `<p>Game Saved to Cart</p>`;
+
     gamePrices.appendChild(normPrice);
     gamePrices.appendChild(moneySaved);
     gamePrices.appendChild(price);
@@ -166,6 +175,7 @@ const createCards = (cardElements) => {
     gameCard.append(gamePrices);
     gameCard.append(gameReleaseDate);
     gameCard.append(saveButton);
+    gameCard.appendChild(gameSaved);
     gameCards.appendChild(gameCard);
 
     ///Check if there is a realse date information
@@ -180,8 +190,8 @@ const createCards = (cardElements) => {
     gameCard.appendChild(gameInfoLink);
 
     saveButton.addEventListener("click", () => {
-      errorModal.classList.remove("displayError");
       if (!cart.includes(ele)) {
+        gameSaved.style.display = "block";
         cart.push(ele);
         numbOfGames.textContent = `${cart.length - 1}`;
 
@@ -192,9 +202,35 @@ const createCards = (cardElements) => {
         existingData.push(ele);
 
         localStorage.gamesInCart = JSON.stringify(cart);
-      } else {
-        errorModal.classList.add("displayError");
       }
     });
   });
 };
+const fetchDeal = async (id) => {
+  spinerAnim.style.display = "inline-block";
+  const fetchGameData = await fetch(
+    `https://www.cheapshark.com/api/1.0/deals?storeID=${id}&sortBy=Price`
+  );
+  spinerAnim.style.display = "none";
+  const gameData = await fetchGameData.json();
+  console.log(gameData);
+};
+fetchDeal(1);
+
+const search = async (title) => {
+  spinerAnim.style.display = "inline-block";
+  const fetchGameData = await fetch(
+    `https://www.cheapshark.com/api/1.0/games?title=${title}`
+  );
+  spinerAnim.style.display = "none";
+  const gameData = await fetchGameData.json();
+  console.log(gameData);
+  createCards(gameData);
+};
+
+searchBtn.addEventListener("click", () => {
+  const textInput = searchGames.value.toLocaleLowerCase();
+  console.log(searchGames);
+  removeAllChildNodes(gameCards);
+  search(textInput);
+});

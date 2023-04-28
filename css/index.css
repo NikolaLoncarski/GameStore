@@ -182,36 +182,70 @@ nav .stores-Side-Nav .card h2 {
   color: #1e1b4b;
   border: 1px solid #1e1b4b;
 }
-
-.Error {
+.gameCards .gameSaved {
   position: absolute;
+  z-index: 4;
+  height: fit-content;
+  width: 200px;
+  top: 0%;
+  right: -10%;
+  display: none;
   opacity: 0;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  background-color: #1e1b4b;
-  height: 200px;
-  width: 400px;
-  text-align: center;
-  border-radius: 8px;
-  animation: 1s ease-out forwards;
+  transform: rotate(30deg);
+  background-color: #c2410c;
+  font-weight: bolder;
+  color: #cbd5e1;
+  animation: savedAnim 0.3s linear forwards;
 }
-
-h2 {
-  color: red;
-  margin: 0;
-  line-height: 200px;
-}
-
-@keyframes errorAnim {
-  0% {
+@keyframes savedAnim {
+  from {
+    opacity: 0;
+  }
+  to {
     opacity: 1;
   }
-  75% {
-    opacity: 1;
+}
+
+.lds-ring {
+  display: none;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-30%, -50%);
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #c2410c;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #c2410c transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
   }
   100% {
-    opacity: 0;
+    transform: rotate(360deg);
   }
 }

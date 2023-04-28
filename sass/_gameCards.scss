@@ -74,4 +74,28 @@
     color: $darkestIndigo;
     border: 1px solid $darkestIndigo;
   }
+  .gameSaved {
+    position: absolute;
+    z-index: 4;
+    height: fit-content;
+    width: 200px;
+    top: 0%;
+    right: -10%;
+    display: none;
+    opacity: 0;
+    transform: rotate(30deg);
+    background-color: $orange;
+    font-weight: bolder;
+    color: $greyShade;
+    animation: savedAnim 0.3s linear forwards;
+  }
+
+  @keyframes savedAnim {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
