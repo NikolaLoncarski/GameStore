@@ -1,0 +1,251 @@
+* {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #cbd5e1;
+}
+
+header {
+  position: fixed;
+  z-index: 3;
+  background-color: #312e81;
+  width: 100vw;
+}
+header .menuButton {
+  height: 30px;
+  width: 100px;
+  object-fit: contain;
+  position: absolute;
+  top: 1rem;
+  left: 0.5rem;
+}
+header .menuButton:hover {
+  color: #cbd5e1;
+}
+
+h1 {
+  text-align: center;
+  color: #cbd5e1;
+  font-weight: 900;
+  transform: skewX(15deg);
+}
+
+ul {
+  padding: 0;
+}
+
+.cartHolder {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  height: 50px;
+  width: 150px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.cartHolder .Cart {
+  color: #374151;
+  font-size: 20px;
+  background-color: #cbd5e1;
+  border: 1px solid #1e1b4b;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.cartHolder .Cart a {
+  text-decoration: none;
+}
+.cartHolder .Cart:hover {
+  background-color: #374151;
+  color: #cbd5e1;
+}
+.cartHolder .numbOfGames {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  color: red;
+  text-align: center;
+  line-height: 40px;
+  border: 1px solid #374151;
+}
+
+nav {
+  margin: 1rem 2rem 1rem 2rem;
+}
+nav .stores-Side-Nav {
+  min-width: 100%;
+  list-style: none;
+  height: fit-content;
+  overflow: scroll;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: row;
+}
+nav .stores-Side-Nav .card {
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  width: 300px;
+  cursor: pointer;
+  text-align: center;
+  color: #cbd5e1;
+  background-color: black;
+  align-items: center;
+  gap: 1rem;
+  margin-right: 1em;
+}
+nav .stores-Side-Nav .card img {
+  display: inline-block;
+  object-fit: contain;
+  width: 50px;
+  height: 50px;
+}
+nav .stores-Side-Nav .card h2 {
+  font-size: 25px;
+}
+
+.gameCards {
+  z-index: 1;
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  transform: translateX(-50%);
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  width: 80%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.gameCards .game {
+  width: 450px;
+  height: 600px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  color: #374151;
+  border-radius: 8px;
+  align-items: center;
+  background: linear-gradient(#3730a3, #818cf8);
+}
+.gameCards .imageContainer {
+  height: 50%;
+  width: 100%;
+  position: relative;
+}
+.gameCards .imageContainer img {
+  min-height: 50%;
+  min-width: 50%;
+  max-height: 100%;
+  max-width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.gameCards .gameTitle {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0;
+}
+.gameCards .gamePrices {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+}
+.gameCards .normPrice {
+  text-decoration: line-through;
+}
+.gameCards .moneySaved {
+  font-size: 12px;
+}
+.gameCards .price {
+  font-size: 20px;
+}
+.gameCards a {
+  grid-column: span 2;
+  font-size: 30px;
+  text-decoration: none;
+  color: #1e1b4b;
+  border: 1px solid #1e1b4b;
+}
+.gameCards .gameSaved {
+  position: absolute;
+  z-index: 4;
+  height: fit-content;
+  width: 200px;
+  top: 0%;
+  right: -10%;
+  display: none;
+  opacity: 0;
+  transform: rotate(30deg);
+  background-color: #c2410c;
+  font-weight: bolder;
+  color: #cbd5e1;
+  animation: savedAnim 0.3s linear forwards;
+}
+@keyframes savedAnim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lds-ring {
+  display: none;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-30%, -50%);
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #c2410c;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #c2410c transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

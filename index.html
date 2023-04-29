@@ -7,14 +7,38 @@
     <title>Document</title>
     <script defer src="index.js"></script>
     <link rel="shortcut icon" href="#" />
-    <link rel="stylesheet" href="src/index.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <script
+      src="https://kit.fontawesome.com/a81cb52012.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <header>Cheap games api</header>
+    <header>
+      <nav>
+        <ul class="stores-Side-Nav"></ul>
+      </nav>
+      <button class="menuButton">Menu</button>
+      <div class="cartHolder">
+        <div class="numbOfGames"></div>
+        <button class="Cart"><a href="cart.html">Cart</a></button>
+      </div>
+      <div>
+        <button>Title</button> <button>Savings</button> <button>Price</button>
+      </div>
+      <input type="text" class="searchBar" placeholder="Search for names.." />
+      <button type="submit" class="search">Search</button>
+    </header>
 
-    <nav>
-      <ul class="stores-Side-Nav"></ul>
-    </nav>
     <div class="gameCards"></div>
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </body>
 </html>

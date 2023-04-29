@@ -1,1 +1,80 @@
-$lightGreen: #0d9488;
+$darkIndigo: #312e81;
+$darkestIndigo: #1e1b4b;
+$greyShade: #cbd5e1;
+$greyDark: #374151;
+$orange: #c2410c;
+* {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+
+  text-transform: uppercase;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $greyShade;
+}
+header {
+  position: fixed;
+  z-index: 3;
+  background-color: $darkIndigo;
+  width: 100vw;
+  .menuButton {
+    height: 30px;
+    width: 100px;
+    object-fit: contain;
+    position: absolute;
+    top: 1rem;
+    left: 0.5rem;
+
+    &:hover {
+      color: #cbd5e1;
+    }
+  }
+}
+h1 {
+  text-align: center;
+  color: #cbd5e1;
+  font-weight: 900;
+  transform: skewX(15deg);
+}
+ul {
+  padding: 0;
+}
+.cartHolder {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  height: 50px;
+  width: 150px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .Cart {
+    color: $greyDark;
+
+    font-size: 20px;
+    background-color: $greyShade;
+    border: 1px solid $darkestIndigo;
+    border-radius: 8px;
+    cursor: pointer;
+    a {
+      text-decoration: none;
+    }
+    &:hover {
+      background-color: $greyDark;
+      color: $greyShade;
+    }
+  }
+  .numbOfGames {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    color: red;
+    text-align: center;
+    line-height: 40px;
+    border: 1px solid $greyDark;
+  }
+}
