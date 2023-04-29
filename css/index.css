@@ -14,7 +14,7 @@ body {
 header {
   position: fixed;
   z-index: 3;
-  background-color: #312e81;
+  background-color: #c2410c;
   width: 100vw;
 }
 header .menuButton {
@@ -40,7 +40,15 @@ ul {
   padding: 0;
 }
 
-.cartHolder {
+nav .filters {
+  display: flex;
+  flex-direction: row;
+}
+nav .filters .stores-select {
+  min-width: 200px;
+  width: 10%;
+}
+nav .filters .cartHolder {
   position: absolute;
   top: 20px;
   right: 50px;
@@ -50,7 +58,7 @@ ul {
   justify-content: space-around;
   align-items: center;
 }
-.cartHolder .Cart {
+nav .filters .cartHolder .Cart {
   color: #374151;
   font-size: 20px;
   background-color: #cbd5e1;
@@ -58,14 +66,14 @@ ul {
   border-radius: 8px;
   cursor: pointer;
 }
-.cartHolder .Cart a {
+nav .filters .cartHolder .Cart a {
   text-decoration: none;
 }
-.cartHolder .Cart:hover {
+nav .filters .cartHolder .Cart:hover {
   background-color: #374151;
   color: #cbd5e1;
 }
-.cartHolder .numbOfGames {
+nav .filters .cartHolder .numbOfGames {
   display: inline-block;
   height: 40px;
   width: 40px;
@@ -74,41 +82,7 @@ ul {
   text-align: center;
   line-height: 40px;
   border: 1px solid #374151;
-}
-
-nav {
-  margin: 1rem 2rem 1rem 2rem;
-}
-nav .stores-Side-Nav {
-  min-width: 100%;
-  list-style: none;
-  height: fit-content;
-  overflow: scroll;
-  overflow-y: hidden;
-  display: flex;
-  flex-direction: row;
-}
-nav .stores-Side-Nav .card {
-  display: flex;
-  flex-direction: row;
-  height: 100px;
-  width: 300px;
-  cursor: pointer;
-  text-align: center;
-  color: #cbd5e1;
-  background-color: black;
-  align-items: center;
-  gap: 1rem;
-  margin-right: 1em;
-}
-nav .stores-Side-Nav .card img {
-  display: inline-block;
-  object-fit: contain;
-  width: 50px;
-  height: 50px;
-}
-nav .stores-Side-Nav .card h2 {
-  font-size: 25px;
+  background-color: white;
 }
 
 .gameCards {
@@ -134,10 +108,11 @@ nav .stores-Side-Nav .card h2 {
   flex-direction: column;
   justify-content: space-around;
   text-align: center;
-  color: #374151;
+  color: white;
   border-radius: 8px;
   align-items: center;
-  background: linear-gradient(#3730a3, #818cf8);
+  background: linear-gradient(rgba(194, 64, 12, 0.2039215686), #aa7f6d);
+  animation: 0.3s linear forwards;
 }
 .gameCards .imageContainer {
   height: 50%;
@@ -170,10 +145,12 @@ nav .stores-Side-Nav .card h2 {
   text-decoration: line-through;
 }
 .gameCards .moneySaved {
-  font-size: 12px;
+  font-size: 20px;
+  color: #c2410c;
 }
 .gameCards .price {
   font-size: 20px;
+  color: #1e1b4b;
 }
 .gameCards a {
   grid-column: span 2;
@@ -206,6 +183,20 @@ nav .stores-Side-Nav .card h2 {
   }
 }
 
+@keyframes allreadySaved {
+  0% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+  0% {
+    transform: translateX(0px);
+  }
+}
 .lds-ring {
   display: none;
   position: absolute;

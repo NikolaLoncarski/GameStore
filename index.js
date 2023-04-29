@@ -1,6 +1,10 @@
 "use strict";
 const nav = document.querySelector("nav");
-const storesNav = document.querySelector(".stores-Side-Nav");
+const storesSelect = document.querySelector(".stores-select");
+const storeImageContainer = document.querySelector(".store-container");
+const storeImg = document.querySelector(".store_img");
+
+const storeName = document.querySelector(".storeName");
 const gameCards = document.querySelector(".gameCards");
 const menuButton = document.querySelector(".menuButton");
 const numbOfGames = document.querySelector(".numbOfGames");
@@ -17,7 +21,8 @@ if (!localStorage.getItem("gamesInCart")) {
 } else {
   cart = JSON.parse(localStorage.getItem("gamesInCart"));
 }
-
+console.log(cart);
+numbOfGames.textContent = `${cart.length}`;
 ///// Fetches stores
 
 const fetchStores = async function () {
@@ -29,22 +34,21 @@ const fetchStores = async function () {
   storeData.map((element) => {
     const { storeID, storeName, isActive, images } = element;
 
-    const listItem = document.createElement("li");
-    listItem.dataset.id = `${storeID}`;
-    listItem.data = `${storeID}`;
-    listItem.classList.add("card");
+    const storeOption = document.createElement("option");
+    storeOption.dataset.id = `${storeID}`;
+    storeOption.data = `${storeID}`;
+    storeOption.classList.add("card");
 
-    const name = document.createElement("h2");
-    name.innerText = `${storeName}`;
+    storeOption.innerText = `${storeName}`;
     const storeLogo = document.createElement("img");
 
     const { logo, banners, icon } = images;
 
     if (isActive === 1) {
       storeLogo.src = `https://www.cheapshark.com${logo}`;
-      listItem.appendChild(storeLogo);
-      storesNav.appendChild(listItem);
-      listItem.appendChild(name);
+
+      storesSelect.appendChild(storeOption);
+      // storeImageContainer.append(storeLogo);
     }
   });
 
@@ -52,8 +56,14 @@ const fetchStores = async function () {
   const gameStores = document.querySelectorAll("[data-id]");
   gameStores.forEach((ele) => {
     ele.addEventListener("click", () => {
+      // removeAllChildNodes(storeImageContainer);
       removeAllChildNodes(gameCards);
       fetchGames(ele.dataset.id);
+      console.log(cart);
+      storeImg.src = `https://www.cheapshark.com/img/stores/logos/${
+        ele.dataset.id - 1
+      }.png`;
+      storeName.textContent = ele.textContent;
     });
   });
 };
@@ -72,22 +82,15 @@ const fetchGames = async (id, sort = "Price") => {
   gamesData(gameData);
 
   createCards(gameInfo[0]);
+  console.log(cart);
 };
-
+fetchGames(1, "Price");
 /// helper function to clear the whole store api call before a new one is loaded
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
 }
-
-menuButton.addEventListener("click", () => {
-  if (storesNav.style.display !== "none") {
-    storesNav.style.display = "none";
-  } else {
-    storesNav.style.display = "flex";
-  }
-});
 
 ////------stores data in an array outside the api call--------/////////
 function gamesData(games) {
@@ -155,6 +158,9 @@ const createCards = (cardElements) => {
     gameSaved.classList.add("gameSaved");
     gameSaved.innerHTML = `<p>Game Saved to Cart</p>`;
 
+    if (cart.some((i) => i.dealID === dealID)) {
+      gameSaved.style.display = "block";
+    }
     gamePrices.appendChild(normPrice);
     gamePrices.appendChild(moneySaved);
     gamePrices.appendChild(price);
@@ -190,18 +196,22 @@ const createCards = (cardElements) => {
     gameCard.appendChild(gameInfoLink);
 
     saveButton.addEventListener("click", () => {
-      if (!cart.includes(ele)) {
+      if (cart.some((i) => i.dealID === dealID)) {
+        gameCard.style.animationName = "allreadySaved";
+        setTimeout(() => {
+          gameCard.style.animationName = "none";
+        }, 300);
+      } else if (!cart.includes(ele)) {
         gameSaved.style.display = "block";
         cart.push(ele);
-        numbOfGames.textContent = `${cart.length - 1}`;
-
-        let existingData = localStorage.getItem("gamesInCart");
-
-        existingData = existingData ? existingData.split(",") : [];
-
-        existingData.push(ele);
-
         localStorage.gamesInCart = JSON.stringify(cart);
+
+        // let existingData = localStorage.getItem("gamesInCart");
+
+        // existingData = existingData ? existingData.split(",") : [];
+
+        // existingData.push(ele);
+        numbOfGames.textContent = `${cart.length}`;
       }
     });
   });
@@ -228,9 +238,18 @@ const search = async (title) => {
   createCards(gameData);
 };
 
-searchBtn.addEventListener("click", () => {
+const searchDeals = () => {
   const textInput = searchGames.value.toLocaleLowerCase();
   console.log(searchGames);
   removeAllChildNodes(gameCards);
   search(textInput);
+};
+
+searchBtn.addEventListener("click", searchDeals);
+searchGames.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    console.log("asd");
+    event.preventDefault();
+    searchDeals();
+  }
 });
