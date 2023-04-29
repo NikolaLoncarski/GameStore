@@ -86,7 +86,7 @@ const displayCartGames = cartData.map((element) => {
     gameInfoLink.text = "More Information not available";
   }
   gameCard.appendChild(gameInfoLink);
-
+  ////------deletes the element-------//////
   deleteButton.addEventListener("click", () => {
     const index = cartData.findIndex((game) => game.dealID === dealID);
 
