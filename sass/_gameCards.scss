@@ -23,10 +23,11 @@
     justify-content: space-around;
 
     text-align: center;
-    color: $greyDark;
+    color: white;
     border-radius: 8px;
     align-items: center;
-    background: linear-gradient(#3730a3, #818cf8);
+    background: linear-gradient($greyShade, #aa7f6d);
+    animation: 0.3s linear forwards;
   }
   .imageContainer {
     height: 50%;
@@ -62,10 +63,12 @@
     text-decoration: line-through;
   }
   .moneySaved {
-    font-size: 12px;
+    font-size: 20px;
+    color: $orange;
   }
   .price {
     font-size: 20px;
+    color: $darkestIndigo;
   }
   a {
     grid-column: span 2;
@@ -87,6 +90,7 @@
     background-color: $orange;
     font-weight: bolder;
     color: $greyShade;
+    border: 1px solid white;
     animation: savedAnim 0.3s linear forwards;
   }
 
@@ -97,5 +101,19 @@
     to {
       opacity: 1;
     }
+  }
+}
+@keyframes allreadySaved {
+  0% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+  0% {
+    transform: translateX(0px);
   }
 }

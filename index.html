@@ -19,20 +19,36 @@
   <body>
     <header>
       <nav>
-        <ul class="stores-Side-Nav"></ul>
+        <div class="filters">
+          
+        <h3 class="filter-label">Select Store</h3>
+          <select name="Game Stores" class="stores-select">
+           <opgroup> Search Stores
+          </select>
+        </div>
+        <div class="search-container">
+          <input
+            type="text"
+            class="searchBar"
+            placeholder="Search for cheap deals"
+          />
+          <button type="submit" class="search">Search</button>
+        </div>
+        <div class="cartHolder">
+          <div class="numbOfGames"></div>
+          <button class="Cart"><a href="cart.html">Cart</a></button>
+        </div>
       </nav>
-      <button class="menuButton">Menu</button>
-      <div class="cartHolder">
-        <div class="numbOfGames"></div>
-        <button class="Cart"><a href="cart.html">Cart</a></button>
-      </div>
-      <div>
-        <button>Title</button> <button>Savings</button> <button>Price</button>
-      </div>
-      <input type="text" class="searchBar" placeholder="Search for names.." />
-      <button type="submit" class="search">Search</button>
     </header>
-
+   <div class="store-container">
+      <img
+        class="store_img"
+        src="https://www.cheapshark.com/img/stores/logos/0.png"
+        alt="store image"
+      />
+      <h2 class="storeName">STEAM</h2>
+    </div>
+    
     <div class="gameCards"></div>
     <div class="lds-ring">
       <div></div>

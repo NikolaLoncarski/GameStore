@@ -2,13 +2,7 @@ let cartData = JSON.parse(localStorage.getItem("gamesInCart"));
 console.log(cartData);
 const gameCards = document.querySelector(".gameCards");
 
-const ids = cartData.map((o) => o.dealID);
-const filtered = cartData.filter(
-  ({ dealID }, index) => !ids.includes(dealID, index + 1)
-);
-console.log(filtered);
-
-const displayCartGames = filtered.map((element) => {
+const displayCartGames = cartData.map((element) => {
   const {
     title,
     dealID,
@@ -19,6 +13,7 @@ const displayCartGames = filtered.map((element) => {
     thumb,
     metacriticLink,
   } = element;
+
   const unixTime = releaseDate * 1000;
   const date = new Date(unixTime);
 
@@ -31,9 +26,17 @@ const displayCartGames = filtered.map((element) => {
   gameTitle.classList.add("gameTitle");
   gameTitle.innerText = title;
 
+  const imageContainer = document.createElement("div");
+  imageContainer.classList.add("imageContainer");
+
   const gameThumb = document.createElement("img");
   gameThumb.src = `${thumb}`;
 
+  imageContainer.append(gameThumb);
+
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("deleteButton");
+  deleteButton.innerText = "remove";
   //--------------Prices ------------//
   const gamePrices = document.createElement("div");
   gamePrices.classList.add("gamePrices");
@@ -50,13 +53,10 @@ const displayCartGames = filtered.map((element) => {
   moneySaved.classList.add("moneySaved");
   moneySaved.innerText = `Money Saved:${parseFloat(savings).toFixed(1)}%`;
 
-  const deleteButton = document.createElement("button");
-  deleteButton.classList.add("deleteButton");
-  deleteButton.innerText = "remove";
-
   gamePrices.appendChild(normPrice);
   gamePrices.appendChild(moneySaved);
   gamePrices.appendChild(price);
+
   ///---------------//-----------------------//
   const gameReleaseDate = document.createElement("span");
   gameReleaseDate.classList.add("gameDate");
@@ -70,11 +70,12 @@ const displayCartGames = filtered.map((element) => {
   }
 
   gameCard.appendChild(gameTitle);
-  gameCard.prepend(gameThumb);
+  gameCard.prepend(imageContainer);
   gameCard.append(gamePrices);
   gameCard.append(gameReleaseDate);
   gameCard.append(deleteButton);
   gameCards.appendChild(gameCard);
+
   ///Check if there is a realse date information
   const gameInfoLink = document.createElement("a");
   gameInfoLink.href = `https://www.metacritic.com${metacriticLink}`;
@@ -84,7 +85,8 @@ const displayCartGames = filtered.map((element) => {
   } else {
     gameInfoLink.text = "More Information not available";
   }
-
+  gameCard.appendChild(gameInfoLink);
+  ////------deletes the element-------//////
   deleteButton.addEventListener("click", () => {
     const index = cartData.findIndex((game) => game.dealID === dealID);
 

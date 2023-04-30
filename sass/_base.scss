@@ -3,6 +3,7 @@ $darkestIndigo: #1e1b4b;
 $greyShade: #cbd5e1;
 $greyDark: #374151;
 $orange: #c2410c;
+$slateBlack: #020617;
 * {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
@@ -16,9 +17,12 @@ body {
   background-color: $greyShade;
 }
 header {
+  padding-left: 1rem;
+  padding-right: 1rem;
   position: fixed;
   z-index: 3;
-  background-color: $darkIndigo;
+  background-color: $orange;
+
   width: 100vw;
   .menuButton {
     height: 30px;
@@ -33,48 +37,29 @@ header {
     }
   }
 }
-h1 {
-  text-align: center;
-  color: #cbd5e1;
-  font-weight: 900;
-  transform: skewX(15deg);
-}
-ul {
-  padding: 0;
-}
-.cartHolder {
-  position: absolute;
-  top: 20px;
-  right: 50px;
-  height: 50px;
-  width: 150px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  .Cart {
-    color: $greyDark;
 
-    font-size: 20px;
-    background-color: $greyShade;
-    border: 1px solid $darkestIndigo;
-    border-radius: 8px;
-    cursor: pointer;
-    a {
-      text-decoration: none;
-    }
-    &:hover {
-      background-color: $greyDark;
-      color: $greyShade;
-    }
+.store-container {
+  height: 200px;
+  width: 600px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%);
+
+  .store_img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
   }
-  .numbOfGames {
-    display: inline-block;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    color: red;
-    text-align: center;
-    line-height: 40px;
-    border: 1px solid $greyDark;
+  .storeName {
+    max-width: 300px;
+    color: $slateBlack;
+    font-size: 50px;
+    margin: 0;
   }
 }

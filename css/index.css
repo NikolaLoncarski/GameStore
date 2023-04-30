@@ -12,9 +12,11 @@ body {
 }
 
 header {
+  padding-left: 1rem;
+  padding-right: 1rem;
   position: fixed;
   z-index: 3;
-  background-color: #312e81;
+  background-color: #c2410c;
   width: 100vw;
 }
 header .menuButton {
@@ -29,28 +31,58 @@ header .menuButton:hover {
   color: #cbd5e1;
 }
 
-h1 {
-  text-align: center;
-  color: #cbd5e1;
-  font-weight: 900;
-  transform: skewX(15deg);
-}
-
-ul {
-  padding: 0;
-}
-
-.cartHolder {
+.store-container {
+  height: 200px;
+  width: 600px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
   position: absolute;
-  top: 20px;
-  right: 50px;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%);
+}
+.store-container .store_img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.store-container .storeName {
+  max-width: 300px;
+  color: #020617;
+  font-size: 50px;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100px;
+}
+nav .filters {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+nav .filters .filter-label {
+  margin: 0;
+}
+nav .filters .stores-select {
+  min-width: 200px;
+  width: 10%;
+}
+nav .filters .cartHolder {
   height: 50px;
   width: 150px;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.cartHolder .Cart {
+nav .filters .cartHolder .Cart {
   color: #374151;
   font-size: 20px;
   background-color: #cbd5e1;
@@ -58,14 +90,14 @@ ul {
   border-radius: 8px;
   cursor: pointer;
 }
-.cartHolder .Cart a {
+nav .filters .cartHolder .Cart a {
   text-decoration: none;
 }
-.cartHolder .Cart:hover {
+nav .filters .cartHolder .Cart:hover {
   background-color: #374151;
   color: #cbd5e1;
 }
-.cartHolder .numbOfGames {
+nav .filters .cartHolder .numbOfGames {
   display: inline-block;
   height: 40px;
   width: 40px;
@@ -74,41 +106,7 @@ ul {
   text-align: center;
   line-height: 40px;
   border: 1px solid #374151;
-}
-
-nav {
-  margin: 1rem 2rem 1rem 2rem;
-}
-nav .stores-Side-Nav {
-  min-width: 100%;
-  list-style: none;
-  height: fit-content;
-  overflow: scroll;
-  overflow-y: hidden;
-  display: flex;
-  flex-direction: row;
-}
-nav .stores-Side-Nav .card {
-  display: flex;
-  flex-direction: row;
-  height: 100px;
-  width: 300px;
-  cursor: pointer;
-  text-align: center;
-  color: #cbd5e1;
-  background-color: black;
-  align-items: center;
-  gap: 1rem;
-  margin-right: 1em;
-}
-nav .stores-Side-Nav .card img {
-  display: inline-block;
-  object-fit: contain;
-  width: 50px;
-  height: 50px;
-}
-nav .stores-Side-Nav .card h2 {
-  font-size: 25px;
+  background-color: white;
 }
 
 .gameCards {
@@ -134,10 +132,11 @@ nav .stores-Side-Nav .card h2 {
   flex-direction: column;
   justify-content: space-around;
   text-align: center;
-  color: #374151;
+  color: white;
   border-radius: 8px;
   align-items: center;
-  background: linear-gradient(#3730a3, #818cf8);
+  background: linear-gradient(#cbd5e1, #aa7f6d);
+  animation: 0.3s linear forwards;
 }
 .gameCards .imageContainer {
   height: 50%;
@@ -170,10 +169,12 @@ nav .stores-Side-Nav .card h2 {
   text-decoration: line-through;
 }
 .gameCards .moneySaved {
-  font-size: 12px;
+  font-size: 20px;
+  color: #c2410c;
 }
 .gameCards .price {
   font-size: 20px;
+  color: #1e1b4b;
 }
 .gameCards a {
   grid-column: span 2;
@@ -195,6 +196,7 @@ nav .stores-Side-Nav .card h2 {
   background-color: #c2410c;
   font-weight: bolder;
   color: #cbd5e1;
+  border: 1px solid white;
   animation: savedAnim 0.3s linear forwards;
 }
 @keyframes savedAnim {
@@ -206,6 +208,20 @@ nav .stores-Side-Nav .card h2 {
   }
 }
 
+@keyframes allreadySaved {
+  0% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+  0% {
+    transform: translateX(0px);
+  }
+}
 .lds-ring {
   display: none;
   position: absolute;
@@ -248,4 +264,72 @@ nav .stores-Side-Nav .card h2 {
   100% {
     transform: rotate(360deg);
   }
+}
+.deal {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  background: linear-gradient(#c2410c, #aa7f6d);
+}
+.deal .dealImgContainer {
+  height: 150px;
+  width: 200px;
+}
+.deal .dealImgContainer img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.deal .dealInfo {
+  height: 50%;
+  text-align: center;
+  font-size: 18px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #cbd5e1;
+}
+.deal .dealInfo .dealPrice {
+  margin: 0;
+}
+.deal .dealInfo .dealPrice::before {
+  content: "Cheapest: ";
+}
+.deal .dealInfo .dealPrice::after {
+  content: "$";
+}
+.deal .dealInfo .external {
+  margin: 0;
+}
+.deal .dealInfo .gameLookupBtn {
+  height: 30px;
+  width: 50%;
+  background-color: #c2410c;
+  border: 1px solid #cbd5e1;
+  color: #cbd5e1;
+  cursor: pointer;
+}
+
+.search-container {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+}
+.search-container .searchBar {
+  height: 50px;
+  width: 80%;
+  font-size: 30px;
+  border: none;
+}
+.search-container .search {
+  height: 50px;
+  width: 20%;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
 }
