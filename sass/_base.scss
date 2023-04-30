@@ -3,6 +3,7 @@ $darkestIndigo: #1e1b4b;
 $greyShade: #cbd5e1;
 $greyDark: #374151;
 $orange: #c2410c;
+$slateBlack: #020617;
 * {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
@@ -16,9 +17,12 @@ body {
   background-color: $greyShade;
 }
 header {
+  padding-left: 1rem;
+  padding-right: 1rem;
   position: fixed;
   z-index: 3;
   background-color: $orange;
+
   width: 100vw;
   .menuButton {
     height: 30px;
@@ -33,12 +37,29 @@ header {
     }
   }
 }
-h1 {
-  text-align: center;
-  color: #cbd5e1;
-  font-weight: 900;
-  transform: skewX(15deg);
-}
-ul {
-  padding: 0;
+
+.store-container {
+  height: 200px;
+  width: 600px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%);
+
+  .store_img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+  .storeName {
+    max-width: 300px;
+    color: $slateBlack;
+    font-size: 50px;
+    margin: 0;
+  }
 }

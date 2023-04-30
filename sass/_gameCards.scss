@@ -26,7 +26,7 @@
     color: white;
     border-radius: 8px;
     align-items: center;
-    background: linear-gradient(#c2400c34, #aa7f6d);
+    background: linear-gradient($greyShade, #aa7f6d);
     animation: 0.3s linear forwards;
   }
   .imageContainer {
@@ -90,6 +90,7 @@
     background-color: $orange;
     font-weight: bolder;
     color: $greyShade;
+    border: 1px solid white;
     animation: savedAnim 0.3s linear forwards;
   }
 

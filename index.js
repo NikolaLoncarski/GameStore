@@ -21,15 +21,13 @@ if (!localStorage.getItem("gamesInCart")) {
 } else {
   cart = JSON.parse(localStorage.getItem("gamesInCart"));
 }
-console.log(cart);
+
 numbOfGames.textContent = `${cart.length}`;
 ///// Fetches stores
 
 const fetchStores = async function () {
   const fetchStores = await fetch("https://www.cheapshark.com/api/1.0/stores");
   const storeData = await fetchStores.json();
-
-  console.log(storeData);
 
   storeData.map((element) => {
     const { storeID, storeName, isActive, images } = element;
@@ -48,7 +46,6 @@ const fetchStores = async function () {
       storeLogo.src = `https://www.cheapshark.com${logo}`;
 
       storesSelect.appendChild(storeOption);
-      // storeImageContainer.append(storeLogo);
     }
   });
 
@@ -56,10 +53,9 @@ const fetchStores = async function () {
   const gameStores = document.querySelectorAll("[data-id]");
   gameStores.forEach((ele) => {
     ele.addEventListener("click", () => {
-      // removeAllChildNodes(storeImageContainer);
       removeAllChildNodes(gameCards);
       fetchGames(ele.dataset.id);
-      console.log(cart);
+
       storeImg.src = `https://www.cheapshark.com/img/stores/logos/${
         ele.dataset.id - 1
       }.png`;
@@ -78,11 +74,9 @@ const fetchGames = async (id, sort = "Price") => {
   spinerAnim.style.display = "none";
   const gameData = await fetchGameData.json();
 
-  console.log(gameData);
   gamesData(gameData);
 
   createCards(gameInfo[0]);
-  console.log(cart);
 };
 fetchGames(1, "Price");
 /// helper function to clear the whole store api call before a new one is loaded
@@ -113,19 +107,26 @@ const createCards = (cardElements) => {
       savings,
       thumb,
       metacriticLink,
+      name,
+      gameID,
     } = ele;
-
+    console.log(ele);
     const unixTime = releaseDate * 1000;
     const date = new Date(unixTime);
-
+    let discount;
+    if (savings) {
+      discount = parseFloat(savings).toFixed(1);
+    } else {
+      discount = "0";
+    }
     ////overall card div
     const gameCard = document.createElement("div");
     gameCard.classList.add("game");
-    gameCard.dataset.id = `${dealID}`;
+    gameCard.dataset.id = `${dealID || gameID}`;
 
     const gameTitle = document.createElement("h4");
     gameTitle.classList.add("gameTitle");
-    gameTitle.innerText = title;
+    gameTitle.innerText = `${title || name}`;
 
     const imageContainer = document.createElement("div");
     imageContainer.classList.add("imageContainer");
@@ -140,7 +141,7 @@ const createCards = (cardElements) => {
 
     const normPrice = document.createElement("span");
     normPrice.classList.add("normPrice");
-    normPrice.innerText = `Normal Price:${normalPrice}$`;
+    normPrice.innerText = `Normal Price:${normalPrice || salePrice}`;
 
     const price = document.createElement("span");
     price.classList.add("price");
@@ -148,7 +149,7 @@ const createCards = (cardElements) => {
 
     const moneySaved = document.createElement("span");
     moneySaved.classList.add("moneySaved");
-    moneySaved.innerText = `Money Saved:${parseFloat(savings).toFixed(1)}%`;
+    moneySaved.innerText = `Money Saved:${discount || none}%`;
 
     const saveButton = document.createElement("button");
     saveButton.classList.add("saveButton");
@@ -157,10 +158,15 @@ const createCards = (cardElements) => {
     const gameSaved = document.createElement("div");
     gameSaved.classList.add("gameSaved");
     gameSaved.innerHTML = `<p>Game Saved to Cart</p>`;
+    console.log(cart);
 
-    if (cart.some((i) => i.dealID === dealID)) {
+    if (cart.some((i) => i.gameID === gameID)) {
       gameSaved.style.display = "block";
+    } else {
+      gameSaved.style.display = "none";
     }
+
+    console.log(cart.some((i) => i.gameID === gameID));
     gamePrices.appendChild(normPrice);
     gamePrices.appendChild(moneySaved);
     gamePrices.appendChild(price);
@@ -191,26 +197,22 @@ const createCards = (cardElements) => {
       gameInfoLink.target = "_blank";
       gameInfoLink.text = "More Information";
     } else {
-      gameInfoLink.text = "More Information not available";
+      gameInfoLink.text = "More Info not available";
     }
     gameCard.appendChild(gameInfoLink);
 
     saveButton.addEventListener("click", () => {
-      if (cart.some((i) => i.dealID === dealID)) {
+      console.log(cart);
+      if (cart.some((i) => i.gameID === gameID)) {
         gameCard.style.animationName = "allreadySaved";
         setTimeout(() => {
           gameCard.style.animationName = "none";
         }, 300);
-      } else if (!cart.includes(ele)) {
+      } else {
         gameSaved.style.display = "block";
         cart.push(ele);
         localStorage.gamesInCart = JSON.stringify(cart);
 
-        // let existingData = localStorage.getItem("gamesInCart");
-
-        // existingData = existingData ? existingData.split(",") : [];
-
-        // existingData.push(ele);
         numbOfGames.textContent = `${cart.length}`;
       }
     });
@@ -223,7 +225,6 @@ const fetchDeal = async (id) => {
   );
   spinerAnim.style.display = "none";
   const gameData = await fetchGameData.json();
-  console.log(gameData);
 };
 fetchDeal(1);
 
@@ -234,13 +235,13 @@ const search = async (title) => {
   );
   spinerAnim.style.display = "none";
   const gameData = await fetchGameData.json();
-  console.log(gameData);
-  createCards(gameData);
+
+  createDeals(gameData);
 };
 
 const searchDeals = () => {
   const textInput = searchGames.value.toLocaleLowerCase();
-  console.log(searchGames);
+
   removeAllChildNodes(gameCards);
   search(textInput);
 };
@@ -248,8 +249,81 @@ const searchDeals = () => {
 searchBtn.addEventListener("click", searchDeals);
 searchGames.addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
-    console.log("asd");
     event.preventDefault();
     searchDeals();
   }
 });
+
+const createDeals = (data) => {
+  data.map((ele) => {
+    const { cheapest, external, gameID, thumb } = ele;
+
+    const dealCard = document.createElement("div");
+    dealCard.classList.add("deal");
+    dealCard.dataset.id = `${gameID}`;
+
+    const dealInfo = document.createElement("div");
+    dealInfo.classList.add("dealInfo");
+
+    const externalName = document.createElement("h4");
+    externalName.classList.add("external");
+    externalName.innerText = `${external}`;
+
+    const dealImgContainer = document.createElement("div");
+    dealImgContainer.classList.add("dealImgContainer");
+
+    const gameThumb = document.createElement("img");
+    gameThumb.src = `${thumb}`;
+    dealImgContainer.append(gameThumb);
+
+    const dealPrice = document.createElement("h4");
+    dealPrice.classList.add("dealPrice");
+    dealPrice.innerText = `${cheapest}`;
+
+    const gameLookupBtn = document.createElement("button");
+    gameLookupBtn.classList.add("gameLookupBtn");
+    gameLookupBtn.innerText = "Go to game";
+
+    dealInfo.append(externalName);
+    dealInfo.append(dealPrice);
+    dealInfo.append(gameLookupBtn);
+
+    dealCard.append(dealImgContainer);
+    dealCard.append(dealInfo);
+
+    gameCards.append(dealCard);
+    gameLookupBtn.addEventListener("click", () => {
+      removeAllChildNodes(gameCards);
+      searchGamesID(gameID);
+    });
+  });
+};
+
+const searchGamesID = async (id) => {
+  spinerAnim.style.display = "inline-block";
+  const fetchGameData = await fetch(
+    `https://www.cheapshark.com/api/1.0/games?id=${id}`
+  );
+  spinerAnim.style.display = "none";
+  const gameData = await fetchGameData.json();
+
+  makeDeals(gameData);
+};
+const makeDeals = (data) => {
+  const { cheapestPriceEver, deals, info } = data;
+  deals.map((item) => {
+    const { storeID, dealID, price } = item;
+
+    searchDealsID(dealID);
+  });
+};
+const searchDealsID = async (id) => {
+  spinerAnim.style.display = "inline-block";
+  const fetchGameData = await fetch(
+    `https://www.cheapshark.com/api/1.0/deals?id=${id}`
+  );
+  spinerAnim.style.display = "none";
+  const gameData = await fetchGameData.json();
+
+  createCards([gameData.gameInfo]);
+};

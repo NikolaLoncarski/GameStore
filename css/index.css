@@ -12,6 +12,8 @@ body {
 }
 
 header {
+  padding-left: 1rem;
+  padding-right: 1rem;
   position: fixed;
   z-index: 3;
   background-color: #c2410c;
@@ -29,29 +31,51 @@ header .menuButton:hover {
   color: #cbd5e1;
 }
 
-h1 {
-  text-align: center;
-  color: #cbd5e1;
-  font-weight: 900;
-  transform: skewX(15deg);
-}
-
-ul {
-  padding: 0;
-}
-
-nav .filters {
+.store-container {
+  height: 200px;
+  width: 600px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%);
+}
+.store-container .store_img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.store-container .storeName {
+  max-width: 300px;
+  color: #020617;
+  font-size: 50px;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100px;
+}
+nav .filters {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+nav .filters .filter-label {
+  margin: 0;
 }
 nav .filters .stores-select {
   min-width: 200px;
   width: 10%;
 }
 nav .filters .cartHolder {
-  position: absolute;
-  top: 20px;
-  right: 50px;
   height: 50px;
   width: 150px;
   display: flex;
@@ -111,7 +135,7 @@ nav .filters .cartHolder .numbOfGames {
   color: white;
   border-radius: 8px;
   align-items: center;
-  background: linear-gradient(rgba(194, 64, 12, 0.2039215686), #aa7f6d);
+  background: linear-gradient(#cbd5e1, #aa7f6d);
   animation: 0.3s linear forwards;
 }
 .gameCards .imageContainer {
@@ -172,6 +196,7 @@ nav .filters .cartHolder .numbOfGames {
   background-color: #c2410c;
   font-weight: bolder;
   color: #cbd5e1;
+  border: 1px solid white;
   animation: savedAnim 0.3s linear forwards;
 }
 @keyframes savedAnim {
@@ -239,4 +264,72 @@ nav .filters .cartHolder .numbOfGames {
   100% {
     transform: rotate(360deg);
   }
+}
+.deal {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  background: linear-gradient(#c2410c, #aa7f6d);
+}
+.deal .dealImgContainer {
+  height: 150px;
+  width: 200px;
+}
+.deal .dealImgContainer img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.deal .dealInfo {
+  height: 50%;
+  text-align: center;
+  font-size: 18px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #cbd5e1;
+}
+.deal .dealInfo .dealPrice {
+  margin: 0;
+}
+.deal .dealInfo .dealPrice::before {
+  content: "Cheapest: ";
+}
+.deal .dealInfo .dealPrice::after {
+  content: "$";
+}
+.deal .dealInfo .external {
+  margin: 0;
+}
+.deal .dealInfo .gameLookupBtn {
+  height: 30px;
+  width: 50%;
+  background-color: #c2410c;
+  border: 1px solid #cbd5e1;
+  color: #cbd5e1;
+  cursor: pointer;
+}
+
+.search-container {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+}
+.search-container .searchBar {
+  height: 50px;
+  width: 80%;
+  font-size: 30px;
+  border: none;
+}
+.search-container .search {
+  height: 50px;
+  width: 20%;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
 }
