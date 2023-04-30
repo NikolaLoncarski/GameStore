@@ -218,15 +218,6 @@ const createCards = (cardElements) => {
     });
   });
 };
-const fetchDeal = async (id) => {
-  spinerAnim.style.display = "inline-block";
-  const fetchGameData = await fetch(
-    `https://www.cheapshark.com/api/1.0/deals?storeID=${id}&sortBy=Price`
-  );
-  spinerAnim.style.display = "none";
-  const gameData = await fetchGameData.json();
-};
-fetchDeal(1);
 
 const search = async (title) => {
   spinerAnim.style.display = "inline-block";
@@ -240,6 +231,7 @@ const search = async (title) => {
 };
 
 const searchDeals = () => {
+  removeAllChildNodes(storeImageContainer);
   const textInput = searchGames.value.toLocaleLowerCase();
 
   removeAllChildNodes(gameCards);
