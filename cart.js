@@ -2,6 +2,11 @@ let cartData = JSON.parse(localStorage.getItem("gamesInCart"));
 console.log(cartData);
 const gameCards = document.querySelector(".gameCards");
 
+const totalPrice = document.querySelector(".totalPrice");
+const totalSaved = document.querySelector(".totalSaved");
+let total = [];
+let totalSavings = [];
+
 const displayCartGames = cartData.map((element) => {
   const {
     title,
@@ -12,11 +17,25 @@ const displayCartGames = cartData.map((element) => {
     savings,
     thumb,
     metacriticLink,
+    name,
   } = element;
+  let discount;
+  if (savings) {
+    discount = parseFloat(savings).toFixed(1);
+  } else {
+    discount = "0";
+  }
+  //// total price for all items and money saved
+  total.push(+salePrice);
 
+  ////--------///////
   const unixTime = releaseDate * 1000;
   const date = new Date(unixTime);
-
+  if (savings > 0) {
+    const moneyNotSpent = ((+salePrice / +savings) * 100).toFixed(2);
+    totalSavings.push(+moneyNotSpent);
+    console.log(totalSavings);
+  }
   ////overall card div
   const gameCard = document.createElement("div");
   gameCard.classList.add("game");
@@ -24,7 +43,7 @@ const displayCartGames = cartData.map((element) => {
 
   const gameTitle = document.createElement("h4");
   gameTitle.classList.add("gameTitle");
-  gameTitle.innerText = title;
+  gameTitle.innerText = `${title || name}`;
 
   const imageContainer = document.createElement("div");
   imageContainer.classList.add("imageContainer");
@@ -43,7 +62,7 @@ const displayCartGames = cartData.map((element) => {
 
   const normPrice = document.createElement("span");
   normPrice.classList.add("normPrice");
-  normPrice.innerText = `Normal Price:${normalPrice}$`;
+  normPrice.innerText = `Normal Price:${normalPrice || salePrice}$`;
 
   const price = document.createElement("span");
   price.classList.add("price");
@@ -51,7 +70,7 @@ const displayCartGames = cartData.map((element) => {
 
   const moneySaved = document.createElement("span");
   moneySaved.classList.add("moneySaved");
-  moneySaved.innerText = `Money Saved:${parseFloat(savings).toFixed(1)}%`;
+  moneySaved.innerText = `Money Saved:${+discount}%`;
 
   gamePrices.appendChild(normPrice);
   gamePrices.appendChild(moneySaved);
@@ -88,6 +107,9 @@ const displayCartGames = cartData.map((element) => {
   gameCard.appendChild(gameInfoLink);
   ////------deletes the element-------//////
   deleteButton.addEventListener("click", () => {
+    total.pop();
+    totalSavings.pop();
+    addSum();
     const index = cartData.findIndex((game) => game.dealID === dealID);
 
     if (index > -1) {
@@ -97,3 +119,19 @@ const displayCartGames = cartData.map((element) => {
     }
   });
 });
+
+const addSum = () => {
+  if (displayCartGames) {
+    const addUptotal = total.reduce(
+      (accumulator, currentValue) => accumulator + currentValue,
+      0
+    );
+    const addUpSavings = totalSavings.reduce(
+      (accumulator, currentValue) => accumulator + currentValue,
+      0
+    );
+    totalPrice.textContent = `${addUptotal.toFixed(2)}`;
+    totalSaved.textContent = `${addUpSavings.toFixed(2)}`;
+  }
+};
+addSum();

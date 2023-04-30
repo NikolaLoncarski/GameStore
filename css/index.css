@@ -32,15 +32,15 @@ header .menuButton:hover {
 }
 
 .store-container {
-  height: 200px;
-  width: 600px;
+  height: 100px;
+  width: 500px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 3rem;
   position: absolute;
-  top: 5%;
+  top: 15%;
   left: 50%;
   transform: translate(-50%);
 }
@@ -54,6 +54,38 @@ header .menuButton:hover {
   color: #020617;
   font-size: 50px;
   margin: 0;
+}
+
+.whishlist-info .moneySaved .totalSaved, .whishlist-info .total .totalPrice, nav .cartHolder .numbOfGames {
+  display: inline-block;
+  height: 40px;
+  width: 60px;
+  border-radius: 8px;
+  color: red;
+  text-align: center;
+  line-height: 40px;
+  border: 1px solid #374151;
+  background-color: white;
+}
+
+button {
+  width: fit-content;
+  height: 30px;
+  font-size: 20px;
+  color: #c2410c;
+  cursor: pointer;
+}
+button a {
+  text-decoration: none;
+  color: #c2410c;
+}
+button a:hover {
+  color: #cbd5e1;
+}
+button:hover {
+  color: #cbd5e1;
+  border: 1px solid #cbd5e1;
+  background-color: #c2410c;
 }
 
 nav {
@@ -70,45 +102,30 @@ nav .filters {
 }
 nav .filters .filter-label {
   margin: 0;
+  color: #cbd5e1;
 }
 nav .filters .stores-select {
   min-width: 200px;
   width: 10%;
+  height: 30px;
+  font-size: 20px;
+  background-color: #c2410c;
+  color: #cbd5e1;
 }
-nav .filters .cartHolder {
+nav .cartHolder {
   height: 50px;
   width: 150px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-direction: row;
 }
-nav .filters .cartHolder .Cart {
-  color: #374151;
-  font-size: 20px;
-  background-color: #cbd5e1;
-  border: 1px solid #1e1b4b;
-  border-radius: 8px;
-  cursor: pointer;
+@media (max-width: 410px) {
+  nav {
+    flex-direction: column-reverse;
+    height: 120px;
+  }
 }
-nav .filters .cartHolder .Cart a {
-  text-decoration: none;
-}
-nav .filters .cartHolder .Cart:hover {
-  background-color: #374151;
-  color: #cbd5e1;
-}
-nav .filters .cartHolder .numbOfGames {
-  display: inline-block;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  color: red;
-  text-align: center;
-  line-height: 40px;
-  border: 1px solid #374151;
-  background-color: white;
-}
-
 .gameCards {
   z-index: 1;
   position: absolute;
@@ -125,12 +142,14 @@ nav .filters .cartHolder .numbOfGames {
   justify-content: center;
 }
 .gameCards .game {
+  box-shadow: inset 0 0 10px #492104;
   width: 450px;
   height: 600px;
   display: flex;
   position: relative;
   flex-direction: column;
   justify-content: space-around;
+  border: 1px solid #020617;
   text-align: center;
   color: white;
   border-radius: 8px;
@@ -164,24 +183,28 @@ nav .filters .cartHolder .numbOfGames {
   align-items: center;
   justify-content: space-between;
   gap: 1em;
-}
-.gameCards .normPrice {
-  text-decoration: line-through;
-}
-.gameCards .moneySaved {
   font-size: 20px;
+  box-shadow: inset 0 0 10px #492104;
+}
+.gameCards .gamePrices .normPrice {
+  color: red;
+}
+.gameCards .gamePrices .moneySaved {
   color: #c2410c;
 }
-.gameCards .price {
-  font-size: 20px;
+.gameCards .gamePrices .price {
   color: #1e1b4b;
 }
+.gameCards .gameDate {
+  font-size: 20px;
+}
 .gameCards a {
-  grid-column: span 2;
   font-size: 30px;
   text-decoration: none;
-  color: #1e1b4b;
-  border: 1px solid #1e1b4b;
+  color: #cbd5e1;
+}
+.gameCards a:hover {
+  color: #c2410c;
 }
 .gameCards .gameSaved {
   position: absolute;
@@ -306,14 +329,6 @@ nav .filters .cartHolder .numbOfGames {
 .deal .dealInfo .external {
   margin: 0;
 }
-.deal .dealInfo .gameLookupBtn {
-  height: 30px;
-  width: 50%;
-  background-color: #c2410c;
-  border: 1px solid #cbd5e1;
-  color: #cbd5e1;
-  cursor: pointer;
-}
 
 .search-container {
   width: 50%;
@@ -332,4 +347,15 @@ nav .filters .cartHolder .numbOfGames {
   border: none;
   font-size: 30px;
   cursor: pointer;
+}
+
+.whishlist-info {
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  color: #cbd5e1;
+  font-size: 20px;
 }

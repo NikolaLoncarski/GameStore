@@ -8,46 +8,37 @@ nav {
     text-align: center;
     display: flex;
     flex-direction: column;
+
     .filter-label {
       margin: 0;
+      color: $greyShade;
     }
     .stores-select {
       min-width: 200px;
       width: 10%;
+      height: 30px;
+      font-size: 20px;
+      background-color: $orange;
+      color: $greyShade;
     }
-    .cartHolder {
-      height: 50px;
-      width: 150px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      .Cart {
-        color: $greyDark;
+  }
+  .cartHolder {
+    height: 50px;
+    width: 150px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
 
-        font-size: 20px;
-        background-color: $greyShade;
-        border: 1px solid $darkestIndigo;
-        border-radius: 8px;
-        cursor: pointer;
-        a {
-          text-decoration: none;
-        }
-        &:hover {
-          background-color: $greyDark;
-          color: $greyShade;
-        }
-      }
-      .numbOfGames {
-        display: inline-block;
-        height: 40px;
-        width: 40px;
-        border-radius: 50%;
-        color: red;
-        text-align: center;
-        line-height: 40px;
-        border: 1px solid $greyDark;
-        background-color: white;
-      }
+    .numbOfGames {
+      @extend %circle_div;
     }
+  }
+}
+
+@media (max-width: 410px) {
+  nav {
+    flex-direction: column-reverse;
+    height: 120px;
   }
 }

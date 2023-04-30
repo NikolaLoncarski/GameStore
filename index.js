@@ -149,7 +149,7 @@ const createCards = (cardElements) => {
 
     const moneySaved = document.createElement("span");
     moneySaved.classList.add("moneySaved");
-    moneySaved.innerText = `Money Saved:${discount || none}%`;
+    moneySaved.innerText = `Money Saved:${discount}%`;
 
     const saveButton = document.createElement("button");
     saveButton.classList.add("saveButton");

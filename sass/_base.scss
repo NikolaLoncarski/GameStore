@@ -39,15 +39,15 @@ header {
 }
 
 .store-container {
-  height: 200px;
-  width: 600px;
+  height: 100px;
+  width: 500px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 3rem;
   position: absolute;
-  top: 5%;
+  top: 15%;
   left: 50%;
   transform: translate(-50%);
 
@@ -61,5 +61,36 @@ header {
     color: $slateBlack;
     font-size: 50px;
     margin: 0;
+  }
+}
+%circle_div {
+  display: inline-block;
+  height: 40px;
+  width: 60px;
+  border-radius: 8px;
+  color: red;
+  text-align: center;
+  line-height: 40px;
+  border: 1px solid $greyDark;
+  background-color: white;
+}
+
+button {
+  width: fit-content;
+  height: 30px;
+  font-size: 20px;
+  color: $orange;
+  cursor: pointer;
+  a {
+    text-decoration: none;
+    color: $orange;
+    &:hover {
+      color: $greyShade;
+    }
+  }
+  &:hover {
+    color: $greyShade;
+    border: 1px solid $greyShade;
+    background-color: $orange;
   }
 }
