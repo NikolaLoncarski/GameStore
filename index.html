@@ -20,11 +20,21 @@
     <header>
       <nav>
         <div class="filters">
-          
-        <h3 class="filter-label">Select Store</h3>
-          <select name="Game Stores" class="stores-select">
-           <opgroup> Search Stores
-          </select>
+          <h3 class="filter-label">Select Store</h3>
+          <select class="stores-select"></select>
+        </div>
+        <div class="priceSlider">
+          <label for="price">Maximum Game Price</label>
+          <input
+            type="range"
+            class="max-price"
+            value="50"
+            min="0"
+            max="50"
+            step="1"
+            name="price"
+            oninput="this.nextElementSibling.value = this.value"
+          /><output>50</output>
         </div>
         <div class="search-container">
           <input
@@ -40,7 +50,7 @@
         </div>
       </nav>
     </header>
-   <div class="store-container">
+    <div class="store-container">
       <img
         class="store_img"
         src="https://www.cheapshark.com/img/stores/logos/0.png"
@@ -48,7 +58,7 @@
       />
       <h2 class="storeName">STEAM</h2>
     </div>
-    
+
     <div class="gameCards"></div>
     <div class="lds-ring">
       <div></div>

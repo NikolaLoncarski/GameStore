@@ -27,8 +27,9 @@
     color: white;
     border-radius: 8px;
     align-items: center;
-    background: linear-gradient($greyShade, #aa7f6d);
+    background: linear-gradient($greyShade, $baseLight);
     animation: 0.3s linear forwards;
+    animation: opacityAnim 0.2s forwards;
   }
   .imageContainer {
     height: 50%;
@@ -65,7 +66,7 @@
       color: red;
     }
     .moneySaved {
-      color: $orange;
+      color: $base;
     }
     .price {
       color: $darkestIndigo;
@@ -80,7 +81,7 @@
     text-decoration: none;
     color: $greyShade;
     &:hover {
-      color: $orange;
+      color: $base;
     }
   }
   .gameSaved {
@@ -93,7 +94,7 @@
     display: none;
     opacity: 0;
     transform: rotate(30deg);
-    background-color: $orange;
+    background-color: $base;
     font-weight: bolder;
     color: $greyShade;
     border: 1px solid white;

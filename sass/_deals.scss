@@ -5,8 +5,8 @@
   align-items: center;
   justify-content: center;
   height: 300px;
-  background: linear-gradient($orange, #aa7f6d);
-
+  background: linear-gradient($base, $baseLight);
+  animation: opacityAnim 0.2s forwards;
   .dealImgContainer {
     height: 150px;
     width: 200px;

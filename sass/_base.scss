@@ -1,8 +1,9 @@
 $darkIndigo: #312e81;
 $darkestIndigo: #1e1b4b;
 $greyShade: #cbd5e1;
-$greyDark: #374151;
-$orange: #c2410c;
+$greyDark: #64748b;
+$base: #c2410c;
+$baseLight: #fb923c;
 $slateBlack: #020617;
 * {
   font-family: "Roboto", sans-serif;
@@ -17,11 +18,13 @@ body {
   background-color: $greyShade;
 }
 header {
+  width: 100vw;
+  width: 100svw;
   padding-left: 1rem;
   padding-right: 1rem;
   position: fixed;
   z-index: 3;
-  background-color: $orange;
+  background-color: $base;
 
   width: 100vw;
   .menuButton {
@@ -79,11 +82,12 @@ button {
   width: fit-content;
   height: 30px;
   font-size: 20px;
-  color: $orange;
+  color: $base;
+  border: 1px solid $baseLight;
   cursor: pointer;
   a {
     text-decoration: none;
-    color: $orange;
+    color: $base;
     &:hover {
       color: $greyShade;
     }
@@ -91,6 +95,23 @@ button {
   &:hover {
     color: $greyShade;
     border: 1px solid $greyShade;
-    background-color: $orange;
+    background-color: $base;
+  }
+}
+
+/////--------opacity animation ---------/////
+
+@keyframes opacityAnim {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+
+  85% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
   }
 }

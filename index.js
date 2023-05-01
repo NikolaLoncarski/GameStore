@@ -3,18 +3,21 @@ const nav = document.querySelector("nav");
 const storesSelect = document.querySelector(".stores-select");
 const storeImageContainer = document.querySelector(".store-container");
 const storeImg = document.querySelector(".store_img");
-
+const priceSlider = document.querySelector(".priceSlider");
 const storeName = document.querySelector(".storeName");
 const gameCards = document.querySelector(".gameCards");
 const menuButton = document.querySelector(".menuButton");
 const numbOfGames = document.querySelector(".numbOfGames");
 const spinerAnim = document.querySelector(".lds-ring");
-
+const maxPrice = document.querySelector(".max-price");
 const searchGames = document.querySelector(".searchBar");
+
+const createError = document.createElement("h2");
+createError.textContent = "No Results Found";
 
 const searchBtn = document.querySelector(".search");
 let gameInfo = [];
-
+let maximumPrice = 50;
 let cart = [];
 if (!localStorage.getItem("gamesInCart")) {
   cart = [];
@@ -54,7 +57,7 @@ const fetchStores = async function () {
   gameStores.forEach((ele) => {
     ele.addEventListener("click", () => {
       removeAllChildNodes(gameCards);
-      fetchGames(ele.dataset.id);
+      fetchGames(ele.dataset.id, maximumPrice);
 
       storeImg.src = `https://www.cheapshark.com/img/stores/logos/${
         ele.dataset.id - 1
@@ -66,10 +69,11 @@ const fetchStores = async function () {
 fetchStores();
 
 ///// fethces individual store games
-const fetchGames = async (id, sort = "Price") => {
+const fetchGames = async (id, price) => {
   spinerAnim.style.display = "inline-block";
+  console.log(price);
   const fetchGameData = await fetch(
-    `https://www.cheapshark.com/api/1.0/deals?storeID=${id}&sortBy=${sort}`
+    `https://www.cheapshark.com/api/1.0/deals?storeID=${id}&upperPrice=${price}&sortBy=Release`
   );
   spinerAnim.style.display = "none";
   const gameData = await fetchGameData.json();
@@ -78,7 +82,7 @@ const fetchGames = async (id, sort = "Price") => {
 
   createCards(gameInfo[0]);
 };
-fetchGames(1, "Price");
+fetchGames(1, maximumPrice);
 /// helper function to clear the whole store api call before a new one is loaded
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
@@ -97,7 +101,9 @@ function cartGames(games) {
 
 ////--------creates new dom elements from the new array-------///////
 const createCards = (cardElements) => {
-  cardElements.map((ele) => {
+  removeAllChildNodes(storeImageContainer);
+
+  cardElements.map((ele, i) => {
     const {
       title,
       dealID,
@@ -110,7 +116,7 @@ const createCards = (cardElements) => {
       name,
       gameID,
     } = ele;
-    console.log(ele);
+
     const unixTime = releaseDate * 1000;
     const date = new Date(unixTime);
     let discount;
@@ -123,7 +129,7 @@ const createCards = (cardElements) => {
     const gameCard = document.createElement("div");
     gameCard.classList.add("game");
     gameCard.dataset.id = `${dealID || gameID}`;
-
+    animationDelay(gameCard, i);
     const gameTitle = document.createElement("h4");
     gameTitle.classList.add("gameTitle");
     gameTitle.innerText = `${title || name}`;
@@ -158,7 +164,6 @@ const createCards = (cardElements) => {
     const gameSaved = document.createElement("div");
     gameSaved.classList.add("gameSaved");
     gameSaved.innerHTML = `<p>Game Saved to Cart</p>`;
-    console.log(cart);
 
     if (cart.some((i) => i.gameID === gameID)) {
       gameSaved.style.display = "block";
@@ -166,7 +171,6 @@ const createCards = (cardElements) => {
       gameSaved.style.display = "none";
     }
 
-    console.log(cart.some((i) => i.gameID === gameID));
     gamePrices.appendChild(normPrice);
     gamePrices.appendChild(moneySaved);
     gamePrices.appendChild(price);
@@ -197,12 +201,12 @@ const createCards = (cardElements) => {
       gameInfoLink.target = "_blank";
       gameInfoLink.text = "More Information";
     } else {
+      gameInfoLink.style.pointerEvents = "none";
       gameInfoLink.text = "More Info not available";
     }
     gameCard.appendChild(gameInfoLink);
 
     saveButton.addEventListener("click", () => {
-      console.log(cart);
       if (cart.some((i) => i.gameID === gameID)) {
         gameCard.style.animationName = "allreadySaved";
         setTimeout(() => {
@@ -221,12 +225,13 @@ const createCards = (cardElements) => {
 
 const search = async (title) => {
   spinerAnim.style.display = "inline-block";
+
   const fetchGameData = await fetch(
     `https://www.cheapshark.com/api/1.0/games?title=${title}`
   );
+
   spinerAnim.style.display = "none";
   const gameData = await fetchGameData.json();
-
   createDeals(gameData);
 };
 
@@ -247,12 +252,19 @@ searchGames.addEventListener("keypress", (event) => {
 });
 
 const createDeals = (data) => {
-  data.map((ele) => {
+  ///----- displays an error message if there are no search results found ----///
+  if (data.length === 0) {
+    storeImageContainer.append(createError);
+  }
+
+  data.map((ele, i) => {
     const { cheapest, external, gameID, thumb } = ele;
 
     const dealCard = document.createElement("div");
     dealCard.classList.add("deal");
     dealCard.dataset.id = `${gameID}`;
+
+    animationDelay(dealCard, i);
 
     const dealInfo = document.createElement("div");
     dealInfo.classList.add("dealInfo");
@@ -319,3 +331,18 @@ const searchDealsID = async (id) => {
 
   createCards([gameData.gameInfo]);
 };
+
+///------creates animation delay ----------/////
+const animationDelay = (ele, i) => {
+  ele.style.animationDelay = `${0.05 * i}s`;
+};
+
+//////----------sets the maximum price on games api call --------///////
+maxPrice.addEventListener("change", () => {
+  console.log(+maxPrice.value);
+  maximumPrice = +maxPrice.value;
+  const output = document.querySelector("output");
+  if (output.textContent === "50") {
+    output.textContent = "50+";
+  }
+});
