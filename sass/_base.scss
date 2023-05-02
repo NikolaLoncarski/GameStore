@@ -2,9 +2,9 @@ $darkIndigo: #312e81;
 $darkestIndigo: #1e1b4b;
 $greyShade: #cbd5e1;
 $greyDark: #64748b;
-$base: #c2410c;
-$baseLight: #fb923c;
-$slateBlack: #020617;
+$base: #6b21a8;
+$baseLight: #8b5cf6;
+$slateBlack: #060606;
 * {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
@@ -16,7 +16,7 @@ $slateBlack: #020617;
 body {
   margin: 0;
   padding: 0;
-  background-color: $greyShade;
+  background-color: $slateBlack;
 }
 
 header {
@@ -27,7 +27,7 @@ header {
   z-index: 3;
   background-color: $base;
   border-bottom: 1px solid $greyShade;
-
+  background-color: $slateBlack;
   .menuButton {
     height: 30px;
     width: 100px;
@@ -68,9 +68,11 @@ main {
     height: 100%;
     width: fit-content;
     object-fit: contain;
+    border: 1px solid $baseLight;
+    border-radius: 20px;
   }
   .storeName {
-    color: $slateBlack;
+    color: $base;
     font-size: 50px;
     margin: 0;
     width: fit-content;
