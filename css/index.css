@@ -121,6 +121,10 @@ button:hover {
     word-wrap: break-word;
   }
 }
+main {
+  padding-top: 184px;
+}
+
 @media (max-width: 440px) {
   .store-container {
     height: 100px;

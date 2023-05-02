@@ -45,8 +45,7 @@ main {
   overflow: hidden;
   position: relative;
   padding-top: 10%;
-  // width: 100svw;
-  // width: 100vw;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,7 +58,7 @@ main {
 }
 .store-container {
   height: 100px;
-  // width: 800px;
+
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -137,6 +136,9 @@ button {
       word-wrap: break-word;
     }
   }
+}
+main {
+  padding-top: 184px;
 }
 
 @media (max-width: 440px) {
