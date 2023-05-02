@@ -1,61 +1,80 @@
-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 100px;
-  color: $greyShade;
-  border-bottom: 1px solid $greyShade;
-  gap: 1em;
-  .filters {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
+.searchBy {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  left: 10%;
+  transform: translateX(-10%);
+  h2 {
+    border: 1px solid $greyShade;
+    border-bottom: none;
+    margin: 0;
+    padding: 10px;
+  }
+  nav {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    z-index: 5;
+
+    flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
-    .filter-label {
-      margin: 0;
+    height: fit-content;
+    background-color: $greyShade;
+
+    gap: 1em;
+    .filters {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .filter-label {
+        margin: 0;
+        color: $base;
+      }
+      .stores-select {
+        min-width: 200px;
+        width: 10%;
+        height: 30px;
+        font-size: 20px;
+        background-color: $base;
+
+        cursor: pointer;
+
+        .card {
+          color: $greyShade;
+          cursor: pointer;
+        }
+      }
     }
-    .stores-select {
-      min-width: 200px;
-      width: 10%;
-      height: 30px;
-      font-size: 20px;
-      background-color: $base;
-      color: $greyShade;
-      .card {
-        color: $greyShade;
+    .priceSlider {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: $base;
+      text-align: center;
+      label {
+        font-size: 20px;
+        color: $base;
+      }
+
+      output {
+        color: $base;
+        font-size: 20px;
       }
     }
   }
-  .priceSlider {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    label {
-      font-size: 20px;
-    }
-
-    output {
-      font-size: 20px;
-    }
-  }
-  .cartHolder {
-    height: 50px;
-    width: 150px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-
-    .numbOfGames {
-      @extend %circle_div;
-    }
-  }
 }
-
-@media (max-width: 410px) {
-  nav {
-    flex-direction: column-reverse;
-    height: 120px;
+.searchBy:hover nav {
+  display: flex;
+}
+@media (max-width: 450px) {
+  .searchBy {
+    nav {
+      flex-direction: column;
+    }
   }
 }

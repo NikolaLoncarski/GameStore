@@ -12,8 +12,12 @@ const spinerAnim = document.querySelector(".lds-ring");
 const maxPrice = document.querySelector(".max-price");
 const searchGames = document.querySelector(".searchBar");
 
+////-----Displays on wrong search query-------////
+const errorContainer = document.querySelector(".error");
 const createError = document.createElement("h2");
 createError.textContent = "No Results Found";
+
+/////////-----------------------------------////////
 
 const searchBtn = document.querySelector(".search");
 let gameInfo = [];
@@ -57,6 +61,7 @@ const fetchStores = async function () {
   gameStores.forEach((ele) => {
     ele.addEventListener("click", () => {
       removeAllChildNodes(gameCards);
+
       fetchGames(ele.dataset.id, maximumPrice);
 
       storeImg.src = `https://www.cheapshark.com/img/stores/logos/${
@@ -101,8 +106,7 @@ function cartGames(games) {
 
 ////--------creates new dom elements from the new array-------///////
 const createCards = (cardElements) => {
-  removeAllChildNodes(storeImageContainer);
-
+  removeAllChildNodes(errorContainer);
   cardElements.map((ele, i) => {
     const {
       title,
@@ -236,10 +240,9 @@ const search = async (title) => {
 };
 
 const searchDeals = () => {
-  removeAllChildNodes(storeImageContainer);
+  // removeAllChildNodes(storeImageContainer);
   const textInput = searchGames.value.toLocaleLowerCase();
 
-  removeAllChildNodes(gameCards);
   search(textInput);
 };
 
@@ -253,10 +256,13 @@ searchGames.addEventListener("keypress", (event) => {
 
 const createDeals = (data) => {
   ///----- displays an error message if there are no search results found ----///
+  removeAllChildNodes(errorContainer);
+  removeAllChildNodes(storeImageContainer);
   if (data.length === 0) {
-    storeImageContainer.append(createError);
+    errorContainer.append(createError);
   }
-
+  ////////-------------///////
+  removeAllChildNodes(gameCards);
   data.map((ele, i) => {
     const { cheapest, external, gameID, thumb } = ele;
 
@@ -341,8 +347,4 @@ const animationDelay = (ele, i) => {
 maxPrice.addEventListener("change", () => {
   console.log(+maxPrice.value);
   maximumPrice = +maxPrice.value;
-  const output = document.querySelector("output");
-  if (output.textContent === "50") {
-    output.textContent = "50+";
-  }
 });
