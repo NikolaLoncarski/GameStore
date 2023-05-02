@@ -1,0 +1,21 @@
+.whishlist-info {
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  color: $greyShade;
+  font-size: 20px;
+  top: 0;
+  .total {
+    .totalPrice {
+      @extend %circle_div;
+    }
+  }
+  .moneySaved {
+    .totalSaved {
+      @extend %circle_div;
+    }
+  }
+}

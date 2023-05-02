@@ -1,20 +1,586 @@
-.stores-Side-Nav {
-  list-style: none;
-  background-color: grey;
-  width: 15rem;
-  overflow: scroll;
-  max-height: 90vh;
-  gap: 1rem;
+* {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  color: #cbd5e1;
 }
-.stores-Side-Nav .card {
-  background-color: #0d9488;
-  border: 1px solid black;
-  height: 120px;
-  width: 12rem;
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #cbd5e1;
+}
+
+header {
+  width: 100svw;
+  width: 100vw;
+  position: fixed;
+  z-index: 3;
+  background-color: #c2410c;
+  border-bottom: 1px solid #cbd5e1;
+}
+header .menuButton {
+  height: 30px;
+  width: 100px;
+  object-fit: contain;
+  position: absolute;
+  top: 1rem;
+  left: 0.5rem;
+}
+header .menuButton:hover {
+  color: #cbd5e1;
+}
+
+main {
+  overflow: hidden;
+  position: absolute;
+  top: 20%;
+  width: 100svw;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+main .error h2 {
+  color: #fb923c;
+}
+
+.store-container {
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.store-container .store_img {
+  height: 100%;
+  width: fit-content;
+  object-fit: contain;
+}
+.store-container .storeName {
+  color: #020617;
+  font-size: 50px;
+  margin: 0;
+  width: fit-content;
+}
+
+.whishlist-info .moneySaved .totalSaved, .whishlist-info .total .totalPrice, .main-nav .cartHolder .numbOfGames {
+  display: inline-block;
+  height: 40px;
+  width: 60px;
+  border-radius: 8px;
+  color: red;
+  text-align: center;
+  line-height: 40px;
+  border: 1px solid #64748b;
+  background-color: white;
+}
+
+button {
+  width: fit-content;
+  height: 30px;
+  font-size: 20px;
+  color: #c2410c;
+  border: 1px solid #fb923c;
   cursor: pointer;
 }
-.stores-Side-Nav .card img {
-  object-fit: contain;
+button a {
+  text-decoration: none;
+  color: #c2410c;
+}
+button a:hover {
+  color: #cbd5e1;
+}
+button:hover {
+  color: #cbd5e1;
+  border: 1px solid #cbd5e1;
+  background-color: #c2410c;
+}
+
+@keyframes opacityAnim {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+  85% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@media (max-width: 768px) {
+  .store-container {
+    height: 200px;
+    flex-direction: column;
+    width: 400px;
+  }
+  .store-container .storeName {
+    font-size: 40px;
+    word-wrap: break-word;
+  }
+}
+@media (max-width: 440px) {
+  .store-container {
+    height: 100px;
+    width: 300px;
+  }
+  .store-container .storeName {
+    font-size: 20px;
+  }
+}
+.main-nav {
+  width: 100svw;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 1em;
+}
+.main-nav .search-container {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.main-nav .search-container .searchBar {
+  height: 50px;
+  width: 80%;
+  font-size: 30px;
+  border: none;
+  color: #c2410c;
+}
+.main-nav .search-container .search {
+  height: 50px;
+  width: 20%;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.main-nav .cartHolder {
+  height: 50px;
+  width: 150px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+}
+@media (max-width: 1440px) {
+  .main-nav {
+    margin-top: 1em;
+    justify-content: space-around;
+  }
+  .main-nav .search-container {
+    width: 60%;
+    height: 20px;
+  }
+  .main-nav .search-container .searchBar {
+    height: 50px;
+    width: 80%;
+    font-size: 20px;
+  }
+  .main-nav .search-container .search {
+    height: 50px;
+    min-width: 100px;
+    font-size: 20px;
+  }
+  .main-nav .cartHolder {
+    height: 50px;
+    width: 150px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+  }
+}
+@media (max-width: 768px) {
+  .main-nav {
+    flex-direction: column;
+  }
+  .main-nav .search-container {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .main-nav .search-container .searchBar {
+    height: 50px;
+    width: 80%;
+    font-size: 20px;
+    border: none;
+    color: #c2410c;
+  }
+  .main-nav .search-container .search {
+    height: 30px;
+    width: 20%;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .main-nav .cartHolder {
+    height: 25px;
+    width: 75px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+  }
+}
+@media (max-width: 768px) and (max-width: 1440px) {
+  .main-nav {
+    height: 100px;
+    margin-top: 1em;
+    justify-content: space-around;
+  }
+  .main-nav .search-container {
+    width: 60%;
+    height: 20px;
+  }
+  .main-nav .search-container .searchBar {
+    height: 50px;
+    width: 80%;
+    font-size: 16px;
+  }
+  .main-nav .search-container .search {
+    height: 50px;
+    min-width: 100px;
+    font-size: 16px;
+  }
+  .main-nav .cartHolder {
+    height: 50px;
+    width: 150px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+  }
+}
+@media (max-width: 440px) {
+  .main-nav {
+    padding-top: 1em;
+    flex-direction: column;
+    gap: 1em;
+    height: fit-content;
+  }
+  .main-nav .search-container {
+    width: 90%;
+  }
+}
+.searchBy {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  left: 10%;
+  transform: translateX(-10%);
+}
+.searchBy h2 {
+  border: 1px solid #cbd5e1;
+  border-bottom: none;
+  margin: 0;
+  padding: 10px;
+}
+.searchBy nav {
+  transform: scale(0);
+  transition: transform 0s linear 0.6s;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 5;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: fit-content;
+  background-color: #cbd5e1;
+  gap: 1em;
+}
+.searchBy nav .filters {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.searchBy nav .filters .filter-label {
+  margin: 0;
+  color: #c2410c;
+}
+.searchBy nav .filters .stores-select {
+  min-width: 200px;
+  width: 10%;
+  height: 30px;
+  font-size: 20px;
+  background-color: #c2410c;
+  cursor: pointer;
+}
+.searchBy nav .filters .stores-select .card {
+  color: #cbd5e1;
+  cursor: pointer;
+}
+.searchBy nav .priceSlider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #c2410c;
+  text-align: center;
+}
+.searchBy nav .priceSlider label {
+  font-size: 20px;
+  color: #c2410c;
+}
+.searchBy nav .priceSlider output {
+  color: #c2410c;
+  font-size: 20px;
+}
+
+.searchBy:hover nav {
+  transform: scale(1);
+  transition-delay: 0s;
+}
+
+@media (max-width: 450px) {
+  .searchBy nav {
+    flex-direction: column;
+  }
+}
+.gameCards {
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  width: 80%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.gameCards .game {
+  box-shadow: inset 0 0 10px #492104;
+  width: 450px;
+  height: 600px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid #020617;
+  text-align: center;
+  color: white;
+  border-radius: 8px;
+  align-items: center;
+  background: linear-gradient(#cbd5e1, #fb923c);
+  animation: 0.3s linear forwards;
+  animation: opacityAnim 0.2s forwards;
+}
+.gameCards .imageContainer {
+  height: 50%;
   width: 100%;
+  position: relative;
+}
+.gameCards .imageContainer img {
+  min-height: 50%;
+  min-width: 50%;
+  max-height: 100%;
+  max-width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.gameCards .gameTitle {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0;
+}
+.gameCards .gamePrices {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  font-size: 20px;
+  box-shadow: inset 0 0 10px #492104;
+}
+.gameCards .gamePrices .normPrice {
+  color: red;
+}
+.gameCards .gamePrices .moneySaved {
+  color: #c2410c;
+}
+.gameCards .gamePrices .price {
+  color: #1e1b4b;
+}
+.gameCards .gameDate {
+  font-size: 20px;
+}
+.gameCards a {
+  font-size: 30px;
+  text-decoration: none;
+  color: #cbd5e1;
+}
+.gameCards a:hover {
+  color: #c2410c;
+}
+.gameCards .gameSaved {
+  position: absolute;
+  z-index: 4;
+  height: fit-content;
+  width: 200px;
+  top: 0%;
+  right: -10%;
+  display: none;
+  opacity: 0;
+  transform: rotate(30deg);
+  background-color: #c2410c;
+  font-weight: bolder;
+  color: #cbd5e1;
+  border: 1px solid white;
+  animation: savedAnim 0.3s linear forwards;
+}
+@keyframes savedAnim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes allreadySaved {
+  0% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+  0% {
+    transform: translateX(0px);
+  }
+}
+@media (max-width: 440px) {
+  .gameCards .game {
+    width: 350px;
+    height: 500px;
+  }
+  .gameCards .gameTitle {
+    font-size: 25px;
+  }
+  .gameCards .gamePrices {
+    gap: 1em;
+    font-size: 16px;
+  }
+  .gameCards .gameDate {
+    font-size: 16px;
+  }
+  .gameCards a {
+    font-size: 20px;
+  }
+  .gameCards .gameSaved {
+    width: 150px;
+  }
+}
+.lds-ring {
+  display: none;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-30%, -50%);
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #c2410c;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #c2410c transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.deal {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  background: linear-gradient(#c2410c, #fb923c);
+  animation: opacityAnim 0.2s forwards;
+}
+.deal .dealImgContainer {
+  height: 150px;
+  width: 200px;
+}
+.deal .dealImgContainer img {
   height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.deal .dealInfo {
+  height: 50%;
+  text-align: center;
+  font-size: 18px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #cbd5e1;
+}
+.deal .dealInfo .dealPrice {
+  margin: 0;
+}
+.deal .dealInfo .dealPrice::before {
+  content: "Cheapest: ";
+}
+.deal .dealInfo .dealPrice::after {
+  content: "$";
+}
+.deal .dealInfo .external {
+  margin: 0;
+}
+
+.whishlist-info {
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  color: #cbd5e1;
+  font-size: 20px;
+  top: 0;
 }

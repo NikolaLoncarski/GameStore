@@ -1,0 +1,82 @@
+.searchBy {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  left: 10%;
+  transform: translateX(-10%);
+  h2 {
+    border: 1px solid $greyShade;
+    border-bottom: none;
+    margin: 0;
+    padding: 10px;
+  }
+  nav {
+    transform: scale(0);
+    transition: transform 0s linear 0.6s;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    z-index: 5;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: fit-content;
+    background-color: $greyShade;
+    
+    gap: 1em;
+    .filters {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .filter-label {
+        margin: 0;
+        color: $base;
+      }
+      .stores-select {
+        min-width: 200px;
+        width: 10%;
+        height: 30px;
+        font-size: 20px;
+        background-color: $base;
+
+        cursor: pointer;
+
+        .card {
+          color: $greyShade;
+          cursor: pointer;
+        }
+      }
+    }
+    .priceSlider {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: $base;
+      text-align: center;
+      label {
+        font-size: 20px;
+        color: $base;
+      }
+
+      output {
+        color: $base;
+        font-size: 20px;
+      }
+    }
+  }
+}
+.searchBy:hover nav {
+  transform: scale(1);
+  transition-delay: 0s;
+}
+@media (max-width: 450px) {
+  .searchBy {
+    nav {
+      flex-direction: column;
+    }
+  }
+}
