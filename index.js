@@ -39,7 +39,7 @@ const fetchStores = async function () {
   storeData.map((element) => {
     const { storeID, storeName, isActive, images } = element;
 
-    const storeOption = document.createElement("option");
+    const storeOption = document.createElement("p");
     storeOption.dataset.id = `${storeID}`;
     storeOption.data = `${storeID}`;
     storeOption.classList.add("card");
@@ -54,6 +54,10 @@ const fetchStores = async function () {
 
       storesSelect.appendChild(storeOption);
     }
+  });
+
+  storesSelect.addEventListener("change", (e) => {
+    console.log(e);
   });
 
   ////makes store cards clickable and starts an api-call to get games
