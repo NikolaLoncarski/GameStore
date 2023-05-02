@@ -75,12 +75,15 @@ fetchStores();
 
 ///// fethces individual store games
 const fetchGames = async (id, price) => {
+  storeImageContainer.style.opacity = "0";
   spinerAnim.style.display = "inline-block";
+
   console.log(price);
   const fetchGameData = await fetch(
     `https://www.cheapshark.com/api/1.0/deals?storeID=${id}&upperPrice=${price}&sortBy=Release`
   );
   spinerAnim.style.display = "none";
+  storeImageContainer.style.opacity = "1";
   const gameData = await fetchGameData.json();
 
   gamesData(gameData);
