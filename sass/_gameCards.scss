@@ -1,10 +1,4 @@
 .gameCards {
-  z-index: 1;
-  position: absolute;
-  left: 50%;
-
-  top: 25%;
-  transform: translateX(-50%);
   margin: 2rem auto;
   display: flex;
   flex-direction: row;
@@ -15,19 +9,21 @@
   justify-content: center;
 
   .game {
+    box-shadow: inset 0 0 10px #492104;
     width: 450px;
     height: 600px;
     display: flex;
     position: relative;
     flex-direction: column;
     justify-content: space-around;
-
+    border: 1px solid $slateBlack;
     text-align: center;
     color: white;
     border-radius: 8px;
     align-items: center;
-    background: linear-gradient($greyShade, #aa7f6d);
+    background: linear-gradient($greyShade, $baseLight);
     animation: 0.3s linear forwards;
+    animation: opacityAnim 0.2s forwards;
   }
   .imageContainer {
     height: 50%;
@@ -58,24 +54,29 @@
     align-items: center;
     justify-content: space-between;
     gap: 1em;
-  }
-  .normPrice {
-    text-decoration: line-through;
-  }
-  .moneySaved {
     font-size: 20px;
-    color: $orange;
+    box-shadow: inset 0 0 10px #492104;
+    .normPrice {
+      color: red;
+    }
+    .moneySaved {
+      color: $base;
+    }
+    .price {
+      color: $darkestIndigo;
+    }
   }
-  .price {
+  .gameDate {
     font-size: 20px;
-    color: $darkestIndigo;
   }
+
   a {
-    grid-column: span 2;
     font-size: 30px;
     text-decoration: none;
-    color: $darkestIndigo;
-    border: 1px solid $darkestIndigo;
+    color: $greyShade;
+    &:hover {
+      color: $base;
+    }
   }
   .gameSaved {
     position: absolute;
@@ -87,7 +88,7 @@
     display: none;
     opacity: 0;
     transform: rotate(30deg);
-    background-color: $orange;
+    background-color: $base;
     font-weight: bolder;
     color: $greyShade;
     border: 1px solid white;
@@ -115,5 +116,33 @@
   }
   0% {
     transform: translateX(0px);
+  }
+}
+
+@media (max-width: 440px) {
+  .gameCards {
+    .game {
+      width: 350px;
+      height: 500px;
+    }
+
+    .gameTitle {
+      font-size: 25px;
+    }
+    ///---------Prices---------///
+    .gamePrices {
+      gap: 1em;
+      font-size: 16px;
+    }
+    .gameDate {
+      font-size: 16px;
+    }
+
+    a {
+      font-size: 20px;
+    }
+    .gameSaved {
+      width: 150px;
+    }
   }
 }
