@@ -153,3 +153,20 @@ main {
     }
   }
 }
+#siteTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 20px;
+  #logo {
+    height: 50px;
+    width: 50px;
+  }
+  h1 {
+    display: inline;
+    margin: 0;
+
+    font-weight: 800;
+  }
+}

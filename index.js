@@ -8,7 +8,7 @@ const storeName = document.querySelector(".storeName");
 const gameCards = document.querySelector(".gameCards");
 const menuButton = document.querySelector(".menuButton");
 const numbOfGames = document.querySelector(".numbOfGames");
-const spinerAnim = document.querySelector(".lds-ring");
+const spinerAnim = document.querySelector(".spinner");
 const maxPrice = document.querySelector(".max-price");
 const searchGames = document.querySelector(".searchBar");
 
@@ -89,7 +89,7 @@ const fetchGames = async (id, price) => {
   spinerAnim.style.display = "none";
   storeImageContainer.style.opacity = "1";
   const gameData = await fetchGameData.json();
-
+  console.log(gameData);
   gamesData(gameData);
 
   createCards(gameInfo[0]);
@@ -137,6 +137,7 @@ const createCards = (cardElements) => {
       discount = "0";
     }
     ////overall card div
+
     const gameCard = document.createElement("div");
     gameCard.classList.add("game");
     gameCard.dataset.id = `${dealID || gameID}`;
@@ -150,8 +151,12 @@ const createCards = (cardElements) => {
 
     const gameThumb = document.createElement("img");
     gameThumb.src = `${thumb}`;
+    const gameHeading = document.createElement("div");
+    gameHeading.classList.add("gameCardHeading");
 
-    imageContainer.append(gameThumb);
+    const gameInfoBox = document.createElement("div");
+    gameInfoBox.classList.add("gameInfoBox");
+
     //--------------Prices ------------//
     const gamePrices = document.createElement("div");
     gamePrices.classList.add("gamePrices");
@@ -163,6 +168,10 @@ const createCards = (cardElements) => {
     const price = document.createElement("span");
     price.classList.add("price");
     price.innerText = `Current Price:${salePrice}$`;
+
+    const mainPrice = document.createElement("span");
+    mainPrice.classList.add("mainPrice");
+    mainPrice.textContent = `${salePrice}$`;
 
     const moneySaved = document.createElement("span");
     moneySaved.classList.add("moneySaved");
@@ -182,6 +191,12 @@ const createCards = (cardElements) => {
       gameSaved.style.display = "none";
     }
 
+    ///Game card pre-hover State
+    imageContainer.append(gameThumb);
+    gameHeading.append(imageContainer);
+    gameHeading.append(gameTitle);
+    gameHeading.append(mainPrice);
+
     gamePrices.appendChild(normPrice);
     gamePrices.appendChild(moneySaved);
     gamePrices.appendChild(price);
@@ -197,28 +212,36 @@ const createCards = (cardElements) => {
       gameReleaseDate.innerText = "Release Date:N/A";
     }
 
-    gameCard.appendChild(gameTitle);
-    gameCard.prepend(imageContainer);
-    gameCard.append(gamePrices);
-    gameCard.append(gameReleaseDate);
-    gameCard.append(saveButton);
+    gameCard.prepend(gameHeading);
+
+    gameCard.append(gameInfoBox);
+    gameInfoBox.append(gamePrices);
+    gameInfoBox.append(gameReleaseDate);
+    gameInfoBox.append(saveButton);
     gameCard.appendChild(gameSaved);
     gameCards.appendChild(gameCard);
 
     ///Check if there is a realse date information
+
     const gameInfoLink = document.createElement("a");
+    const metacriticIcon = document.createElement("img");
+    gameInfoLink.classList.add("metacritic");
+    metacriticIcon.src = "./metacritic.png";
+    metacriticIcon.alt = "Metacritic icon";
+    gameInfoLink.append(metacriticIcon);
+
     gameInfoLink.href = `https://www.metacritic.com${metacriticLink}`;
     if (metacriticLink) {
       gameInfoLink.target = "_blank";
-      gameInfoLink.text = "More Information";
     } else {
       gameInfoLink.style.pointerEvents = "none";
       gameInfoLink.text = "More Info not available";
     }
-    gameCard.appendChild(gameInfoLink);
+    gameInfoBox.append(gameInfoLink);
 
     saveButton.addEventListener("click", () => {
       if (cart.some((i) => i.gameID === gameID)) {
+        gameCard.style.animationDelay = "0s";
         gameCard.style.animationName = "allreadySaved";
         setTimeout(() => {
           gameCard.style.animationName = "none";
@@ -298,7 +321,7 @@ const createDeals = (data) => {
     dealPrice.innerText = `${cheapest}`;
 
     const gameLookupBtn = document.createElement("button");
-    gameLookupBtn.classList.add("gameLookupBtn");
+    gameLookupBtn.classList.add("saveButton");
     gameLookupBtn.innerText = "Go to game";
 
     dealInfo.append(externalName);
@@ -352,6 +375,5 @@ const animationDelay = (ele, i) => {
 
 //////----------sets the maximum price on games api call --------///////
 maxPrice.addEventListener("change", () => {
-  console.log(+maxPrice.value);
   maximumPrice = +maxPrice.value;
 });

@@ -18,6 +18,11 @@
   </head>
   <body>
     <header>
+      <div id="siteTitle">
+        <img src="./SiteIcon.png" alt="I wish icon" id="logo" />
+        <h1>I Wish</h1>
+      </div>
+
       <div class="main-nav">
         <div class="search-container">
           <input
@@ -27,11 +32,12 @@
           />
           <button type="submit" class="search">Search</button>
         </div>
-        <div class="cartHolder">
-          <div class="numbOfGames"></div>
-          <button class="Cart"><a href="cart.html">Cart</a></button>
-        </div>
       </div>
+      <div class="cartHolder">
+        <div class="numbOfGames"></div>
+        <button class="Cart"><a href="cart.html">Whish List</a></button>
+      </div>
+
       <div class="searchBy">
         <h2>Search Stores</h2>
         <nav>
@@ -55,6 +61,7 @@
         </nav>
       </div>
     </header>
+
     <main>
       <h3 class="error"></h3>
       <div class="store-container">
@@ -68,11 +75,8 @@
 
       <div class="gameCards"></div>
 
-      <div class="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+      <div class="spinner">
+        <div class="spinner1"></div>
       </div>
     </main>
   </body>
