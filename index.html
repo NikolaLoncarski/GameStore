@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="css/index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+      rel="stylesheet"
+    />
 
     <script
       src="https://kit.fontawesome.com/a81cb52012.js"
@@ -19,11 +23,11 @@
   <body>
     <header>
       <div id="siteTitle">
-        <img src="./SiteIcon.png" alt="I wish icon" id="logo" />
-        <h1>I Wish</h1>
-      </div>
+        <div id="navLogo">
+          <img src="./SiteIcon.png" alt="I wish icon" id="logo" />
+          <h1>I Wish</h1>
+        </div>
 
-      <div class="main-nav">
         <div class="search-container">
           <input
             type="text"
@@ -32,12 +36,11 @@
           />
           <button type="submit" class="search">Search</button>
         </div>
+        <div class="cartHolder">
+          <div class="numbOfGames"></div>
+          <button class="Cart"><a href="cart.html">Whish List</a></button>
+        </div>
       </div>
-      <div class="cartHolder">
-        <div class="numbOfGames"></div>
-        <button class="Cart"><a href="cart.html">Whish List</a></button>
-      </div>
-
       <div class="searchBy">
         <h2>Search Stores</h2>
         <nav>

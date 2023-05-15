@@ -1,5 +1,5 @@
 * {
-  font-family: "Roboto", sans-serif;
+  font-family: "Michroma", sans-serif;
   font-weight: 400;
   text-transform: uppercase;
   box-sizing: border-box;
@@ -67,7 +67,7 @@ main .error h2 {
   width: fit-content;
 }
 
-.whishlist-info .moneySaved .totalSaved, .whishlist-info .total .totalPrice, .cartHolder .numbOfGames {
+.whishlist-info .moneySaved .totalSaved, .whishlist-info .total .totalPrice, #siteTitle .cartHolder .numbOfGames {
   display: inline-block;
   height: 40px;
   width: 60px;
@@ -82,7 +82,6 @@ main .error h2 {
 button {
   width: fit-content;
   height: 30px;
-  font-size: 20px;
   color: #6b21a8;
   border: 1px solid #8b5cf6;
   cursor: pointer;
@@ -90,6 +89,7 @@ button {
 button a {
   text-decoration: none;
   color: #6b21a8;
+  margin: 0;
 }
 button a:hover {
   color: #cbd5e1;
@@ -137,23 +137,6 @@ main {
     font-size: 20px;
   }
 }
-#siteTitle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 20px;
-}
-#siteTitle #logo {
-  height: 50px;
-  width: 50px;
-}
-#siteTitle h1 {
-  display: inline;
-  margin: 0;
-  font-weight: 800;
-}
-
 .searchBy {
   position: relative;
   display: inline-block;
@@ -166,6 +149,9 @@ main {
   border-bottom: none;
   margin: 0;
   padding: 10px;
+}
+.searchBy h2:hover {
+  color: #6b21a8;
 }
 .searchBy nav {
   transform: scale(0);
@@ -220,10 +206,61 @@ main {
   font-size: 20px;
 }
 
-.cartHolder {
-  position: absolute;
-  right: 20px;
-  top: 20px;
+.searchBy:hover nav {
+  transform: scale(1);
+  transition-delay: 0s;
+}
+
+#siteTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#siteTitle #navLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+#siteTitle #navLogo img {
+  height: 50px;
+  width: 50px;
+}
+#siteTitle #navLogo h1 {
+  display: inline;
+  margin: 0;
+  width: max-content;
+  font-weight: 800;
+}
+#siteTitle #navLogo:hover {
+  cursor: pointer;
+  filter: invert(48%) sepia(153%) saturate(3207%) hue-rotate(230deg) brightness(95%) contrast(90%);
+}
+#siteTitle .search-container {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#siteTitle .search-container .searchBar {
+  height: 30px;
+  width: 80%;
+  font-size: 16px;
+  border: none;
+  color: #6b21a8;
+}
+#siteTitle .search-container .search {
+  height: 30px;
+  width: max-content;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+#siteTitle .cartHolder {
   height: 50px;
   width: 200px;
   display: flex;
@@ -231,41 +268,9 @@ main {
   align-items: center;
   flex-direction: row;
 }
-.searchBy:hover nav {
-  transform: scale(1);
-  transition-delay: 0s;
-}
-
-.main-nav {
-  width: 100svw;
-  width: 100vw;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-.main-nav .search-container {
-  width: 30%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.main-nav .search-container .searchBar {
-  height: 30px;
-  width: 80%;
-  font-size: 20px;
-  border: none;
-  color: #6b21a8;
-}
-.main-nav .search-container .search {
-  height: 30px;
-  width: 20%;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  flex-shrink: 0;
+#siteTitle .cartHolder .cart {
+  width: max-content;
+  font-size: 12px;
 }
 
 @media (max-width: 1440px) {
@@ -280,7 +285,7 @@ main {
   .main-nav .search-container .searchBar {
     height: 50px;
     width: 80%;
-    font-size: 20px;
+    font-size: 14px;
   }
   .main-nav .search-container .search {
     height: 50px;
@@ -376,19 +381,22 @@ main {
 }
 .gameCards .game .gameSaved {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   height: fit-content;
-  width: 200px;
+  width: 100px;
+  height: 30px;
   top: 0%;
-  right: -10%;
   display: none;
   opacity: 0;
-  transform: rotate(30deg);
   background-color: #6b21a8;
   font-weight: bolder;
   color: #cbd5e1;
   border: 1px solid white;
   animation: savedAnim 0.3s linear forwards;
+}
+.gameCards .game .gameSaved p {
+  font-size: 16px;
+  margin: 0;
 }
 @keyframes savedAnim {
   from {
@@ -400,19 +408,19 @@ main {
 }
 .gameCards .gameCardHeading {
   position: absolute;
-  top: 20%;
+  top: 20px;
   left: 2rem auto;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 200px;
+  height: 350px;
   justify-content: space-between;
   width: 100%;
 }
 .gameCards .gameCardHeading .imageContainer {
-  height: 100%;
-  width: 40%;
+  height: 40%;
+  width: 100%;
   position: relative;
 }
 .gameCards .gameCardHeading .imageContainer img {
@@ -421,15 +429,20 @@ main {
   min-width: 50%;
   max-height: 100%;
   max-width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .gameCards .gameCardHeading .gameTitle {
-  font-size: 20px;
+  font-size: 12px;
   font-weight: 700;
   margin: 0;
 }
 .gameCards .gameInfoBox {
   opacity: 0;
   display: flex;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -442,23 +455,24 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 0.2em;
-  font-size: 15px;
+  font-size: 14px;
+  height: 40%;
 }
-.gameCards .gameInfoBox .gamePrices .normPrice {
-  color: red;
-}
-.gameCards .gameInfoBox .gamePrices .moneySaved {
-  color: #cbd5e1;
-}
-.gameCards .gameInfoBox .gamePrices .price {
-  color: #cbd5e1;
+.gameCards .gameInfoBox .gamePrices span {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #8b5cf6;
+  color: #6b21a8;
 }
 .gameCards .gameInfoBox .gameDate {
-  font-size: 20px;
+  font-size: 16px;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #8b5cf6;
+  color: #6b21a8;
 }
 .gameCards .gameInfoBox .metacritic {
+  margin-top: 10px;
   font-size: 20px;
   text-decoration: none;
   width: 100px;
@@ -470,9 +484,10 @@ main {
   width: 100%;
 }
 .gameCards .gameInfoBox .metacritic:hover {
-  color: #6b21a8;
+  transform: scale(1.1);
 }
 .gameCards .gameInfoBox .saveButton {
+  margin-top: 10px;
   text-decoration: none;
   position: relative;
   border: none;
@@ -487,6 +502,7 @@ main {
   background-size: 300%;
   border-radius: 30px;
   z-index: 1;
+  color: #6b21a8;
 }
 .gameCards .gameInfoBox button:hover {
   animation: ani 8s linear infinite;

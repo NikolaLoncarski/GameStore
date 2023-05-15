@@ -1,12 +1,33 @@
-.main-nav {
-  width: 100svw;
-  width: 100vw;
+#siteTitle {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  justify-content: space-evenly;
+  gap: 1rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  #navLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    img {
+      height: 50px;
+      width: 50px;
+    }
+    h1 {
+      display: inline;
+      margin: 0;
+      width: max-content;
+      font-weight: 800;
+    }
+    &:hover {
+      cursor: pointer;
+      filter: invert(48%) sepia(153%) saturate(3207%) hue-rotate(230deg)
+        brightness(95%) contrast(90%);
+    }
+  }
+
   .search-container {
     width: 30%;
     display: flex;
@@ -16,20 +37,36 @@
     .searchBar {
       height: 30px;
       width: 80%;
-      font-size: 20px;
+      font-size: 16px;
       border: none;
       color: $base;
     }
     .search {
       height: 30px;
-      width: 20%;
+      width: max-content;
       border: none;
-      font-size: 20px;
+      font-size: 16px;
       cursor: pointer;
-      flex-shrink: 0;
+    }
+  }
+  .cartHolder {
+    height: 50px;
+    width: 200px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+
+    .numbOfGames {
+      @extend %circle_div;
+    }
+    .cart {
+      width: max-content;
+      font-size: 12px;
     }
   }
 }
+
 @media (max-width: 1440px) {
   .main-nav {
     margin-top: 1em;
@@ -42,7 +79,7 @@
       .searchBar {
         height: 50px;
         width: 80%;
-        font-size: 20px;
+        font-size: 14px;
       }
       .search {
         height: 50px;

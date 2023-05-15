@@ -6,7 +6,7 @@ $base: #6b21a8;
 $baseLight: #8b5cf6;
 $slateBlack: #060606;
 * {
-  font-family: "Roboto", sans-serif;
+  font-family: "Michroma", sans-serif;
   font-weight: 400;
 
   text-transform: uppercase;
@@ -93,13 +93,14 @@ main {
 button {
   width: fit-content;
   height: 30px;
-  font-size: 20px;
+
   color: $base;
   border: 1px solid $baseLight;
   cursor: pointer;
   a {
     text-decoration: none;
     color: $base;
+    margin: 0;
     &:hover {
       color: $greyShade;
     }
@@ -151,22 +152,5 @@ main {
     .storeName {
       font-size: 20px;
     }
-  }
-}
-#siteTitle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 20px;
-  #logo {
-    height: 50px;
-    width: 50px;
-  }
-  h1 {
-    display: inline;
-    margin: 0;
-
-    font-weight: 800;
   }
 }

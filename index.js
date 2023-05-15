@@ -163,11 +163,11 @@ const createCards = (cardElements) => {
 
     const normPrice = document.createElement("span");
     normPrice.classList.add("normPrice");
-    normPrice.innerText = `Normal Price:${normalPrice || salePrice}`;
+    normPrice.innerText = `Price on release: ${normalPrice || salePrice}$`;
 
     const price = document.createElement("span");
     price.classList.add("price");
-    price.innerText = `Current Price:${salePrice}$`;
+    price.innerText = `Current Price: ${salePrice}$`;
 
     const mainPrice = document.createElement("span");
     mainPrice.classList.add("mainPrice");
@@ -175,18 +175,19 @@ const createCards = (cardElements) => {
 
     const moneySaved = document.createElement("span");
     moneySaved.classList.add("moneySaved");
-    moneySaved.innerText = `Money Saved:${discount}%`;
+    moneySaved.innerText = `Discount: ${discount} %`;
 
     const saveButton = document.createElement("button");
     saveButton.classList.add("saveButton");
-    saveButton.innerText = "Save to Cart";
+    saveButton.innerText = "Wish";
 
     const gameSaved = document.createElement("div");
     gameSaved.classList.add("gameSaved");
-    gameSaved.innerHTML = `<p>Game Saved to Cart</p>`;
+    gameSaved.innerHTML = `<p>Wished</p>`;
 
     if (cart.some((i) => i.gameID === gameID)) {
       gameSaved.style.display = "block";
+      gameCard.style.border = "2px solid #6b21a8 ";
     } else {
       gameSaved.style.display = "none";
     }
@@ -205,7 +206,7 @@ const createCards = (cardElements) => {
     gameReleaseDate.classList.add("gameDate");
 
     if (date > 0) {
-      gameReleaseDate.innerText = `Release Date:${date.toLocaleDateString(
+      gameReleaseDate.innerText = `Release Date : ${date.toLocaleDateString(
         "en-US"
       )}`;
     } else {
@@ -243,10 +244,13 @@ const createCards = (cardElements) => {
       if (cart.some((i) => i.gameID === gameID)) {
         gameCard.style.animationDelay = "0s";
         gameCard.style.animationName = "allreadySaved";
+        gameCard.style.border = "2px solid #6b21a8 ";
+
         setTimeout(() => {
           gameCard.style.animationName = "none";
         }, 300);
       } else {
+        gameCard.style.border = "2px solid #6b21a8 ";
         gameSaved.style.display = "block";
         cart.push(ele);
         localStorage.gamesInCart = JSON.stringify(cart);
