@@ -11,6 +11,7 @@ const numbOfGames = document.querySelector(".numbOfGames");
 const spinerAnim = document.querySelector(".spinner");
 const maxPrice = document.querySelector(".max-price");
 const searchGames = document.querySelector(".searchBar");
+const checkboxMenu = document.querySelector(".checkbox");
 
 ////-----Displays on wrong search query-------////
 const errorContainer = document.querySelector(".error");
@@ -18,11 +19,28 @@ const createError = document.createElement("h2");
 createError.textContent = "No Results Found";
 
 /////////-----------------------------------////////
+const hamMenuCheck = function (e) {
+  if (
+    e.target != checkboxMenu &&
+    e.target != priceSlider &&
+    e.target != priceSlider.children
+  ) {
+    checkboxMenu.checked = false;
+    document.removeEventListener("click", hamMenuCheck);
+  }
+};
+
+checkboxMenu.addEventListener("click", function () {
+  if (this.checked) {
+    document.addEventListener("click", hamMenuCheck);
+  }
+});
 
 const searchBtn = document.querySelector(".search");
 let gameInfo = [];
 let maximumPrice = 50;
 let cart = [];
+
 if (!localStorage.getItem("gamesInCart")) {
   cart = [];
 } else {
@@ -181,6 +199,10 @@ const createCards = (cardElements) => {
     saveButton.classList.add("saveButton");
     saveButton.innerText = "Wish";
 
+    const unwishBtn = document.createElement("button");
+    unwishBtn.classList.add("unwishBtn");
+    unwishBtn.textContent = "unwish";
+
     const gameSaved = document.createElement("div");
     gameSaved.classList.add("gameSaved");
     gameSaved.innerHTML = `<p>Wished</p>`;
@@ -213,23 +235,12 @@ const createCards = (cardElements) => {
       gameReleaseDate.innerText = "Release Date:N/A";
     }
 
-    gameCard.prepend(gameHeading);
-
-    gameCard.append(gameInfoBox);
-    gameInfoBox.append(gamePrices);
-    gameInfoBox.append(gameReleaseDate);
-    gameInfoBox.append(saveButton);
-    gameCard.appendChild(gameSaved);
-    gameCards.appendChild(gameCard);
-
     ///Check if there is a realse date information
-
     const gameInfoLink = document.createElement("a");
     const metacriticIcon = document.createElement("img");
     gameInfoLink.classList.add("metacritic");
     metacriticIcon.src = "./metacritic.png";
     metacriticIcon.alt = "Metacritic icon";
-    gameInfoLink.append(metacriticIcon);
 
     gameInfoLink.href = `https://www.metacritic.com${metacriticLink}`;
     if (metacriticLink) {
@@ -238,7 +249,16 @@ const createCards = (cardElements) => {
       gameInfoLink.style.pointerEvents = "none";
       gameInfoLink.text = "More Info not available";
     }
+    gameCard.prepend(gameHeading);
+    gameCard.append(gameInfoBox);
+    gameInfoBox.append(gamePrices);
+    gameInfoBox.append(gameReleaseDate);
+    gameInfoBox.append(saveButton);
     gameInfoBox.append(gameInfoLink);
+    gameInfoBox.append(unwishBtn);
+    gameCard.appendChild(gameSaved);
+    gameCards.appendChild(gameCard);
+    gameInfoLink.append(metacriticIcon);
 
     saveButton.addEventListener("click", () => {
       if (cart.some((i) => i.gameID === gameID)) {
@@ -256,6 +276,22 @@ const createCards = (cardElements) => {
         localStorage.gamesInCart = JSON.stringify(cart);
 
         numbOfGames.textContent = `${cart.length}`;
+      }
+    });
+
+    unwishBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const localStorageGames = JSON.parse(localStorage.getItem("gamesInCart"));
+      const removeGame = localStorageGames.filter(
+        (item) => item.title !== title
+      );
+      localStorage.setItem("gamesInCart", JSON.stringify(removeGame));
+      if (removeGame) {
+        gameCard.style.border = "none";
+        cart = JSON.parse(localStorage.getItem("gamesInCart"));
+        gameSaved.style.display = "none";
+        numbOfGames.textContent = cart.length;
+        console.log(cart);
       }
     });
   });
