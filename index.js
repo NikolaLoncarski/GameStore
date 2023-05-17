@@ -16,9 +16,10 @@ const checkboxMenu = document.querySelector(".checkbox");
 ////-----Displays on wrong search query-------////
 const errorContainer = document.querySelector(".error");
 const createError = document.createElement("h2");
+
 createError.textContent = "No Results Found";
 
-/////////------------------------------------////////
+/////////--------------------- / /---------------////////
 const hamMenuCheck = function (e) {
   if (
     e.target != checkboxMenu &&
