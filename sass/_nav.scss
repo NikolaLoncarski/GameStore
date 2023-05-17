@@ -1,148 +1,224 @@
-nav {
-  position: absolute;
-  top: 0;
-}
-
-.navbar {
-  width: 100%;
-  box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
-}
-
-.navbar .menu-items {
+header {
   display: flex;
-}
-
-.navbar .nav-container li {
-  list-style: none;
-}
-
-.nav-container {
-  display: block;
-  position: relative;
-  height: 60px;
-}
-
-.nav-container .checkbox {
-  position: absolute;
-  display: block;
-  height: 32px;
-  width: 32px;
-  top: 30px;
-  left: 20px;
-  z-index: 5;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.nav-container .hamburger-lines {
-  display: block;
-  height: 26px;
-  width: 32px;
-  position: absolute;
-  top: 30px;
-  left: 20px;
-  z-index: 2;
-  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  justify-content: space-between;
-}
+  nav {
+    display: flex;
 
-.nav-container .hamburger-lines .line {
-  display: block;
-  height: 4px;
-  width: 100%;
-  border-radius: 10px;
-  background: $base;
-}
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    padding-bottom: 20px;
+    #navLogo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1em;
+      img {
+        height: 50px;
+        width: 50px;
+      }
+      h1 {
+        display: inline;
+        margin: 0;
+        width: max-content;
+        font-weight: 800;
+      }
+      &:hover {
+        cursor: pointer;
+        filter: invert(48%) sepia(153%) saturate(3207%) hue-rotate(230deg)
+          brightness(95%) contrast(90%);
+      }
+    }
 
-.nav-container .hamburger-lines .line1 {
-  transform-origin: 0% 0%;
-  transition: transform 0.4s ease-in-out;
-}
+    .cartHolder {
+      padding-right: 3rem;
+      height: 50px;
+      width: 250px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: row;
 
-.nav-container .hamburger-lines .line2 {
-  transition: transform 0.2s ease-in-out;
-}
-
-.nav-container .hamburger-lines .line3 {
-  transform-origin: 0% 100%;
-  transition: transform 0.4s ease-in-out;
-}
-
-.navbar .menu-items {
-  margin-top: 0;
-  padding-top: 120px;
-  background-color: $greyShade;
-  height: 100vh;
-  width: 100%;
-  transform: translate(-150%);
-  display: flex;
-  flex-direction: column;
-  margin-left: -40px;
-  padding-left: 50px;
-  transition: transform 0.5s ease-in-out;
-  text-align: center;
-}
-
-.navbar .menu-items li {
-  margin-bottom: 1.2rem;
-  font-size: 1.5rem;
-  font-weight: 500;
-  border-bottom: 1px solid $baseLight;
-}
-
-.nav-container input[type="checkbox"]:checked ~ .menu-items {
-  transform: translateX(0);
-}
-
-.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
-  transform: rotate(45deg);
-}
-
-.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
-  transform: scaleY(0);
-}
-
-.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
-  transform: rotate(-45deg);
-}
-
-.filters {
-  text-align: center;
-
-  .filter-label {
-    margin: 0;
-    color: $base;
-  }
-  .stores-select {
-    height: 350px;
-    min-width: 200px;
-
-    font-size: 20px;
-    background-color: $base;
-    overflow: scroll;
-    overflow-x: hidden;
-    cursor: pointer;
-
-    .card {
-      color: $greyShade;
-      cursor: pointer;
+      .numbOfGames {
+        @extend %circle_div;
+      }
+      .cart {
+        width: max-content;
+        font-size: 12px;
+      }
     }
   }
-}
-.priceSlider {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: $base;
-  text-align: center;
-  label {
-    font-size: 20px;
-    color: $base;
+
+  .navbar {
+    width: 10%;
+    box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
   }
 
-  output {
+  .navbar .menu-items {
+    display: flex;
+  }
+
+  .navbar .nav-container li {
+    list-style: none;
+  }
+
+  .nav-container {
+    display: block;
+    position: relative;
+    height: 60px;
+    width: fit-content;
+  }
+
+  .nav-container .checkbox {
+    position: absolute;
+    display: block;
+    height: 32px;
+    width: 32px;
+    top: 25px;
+    left: 20px;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .nav-container .hamburger-lines {
+    display: block;
+    height: 26px;
+    width: 32px;
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .nav-container .hamburger-lines .line {
+    display: block;
+    height: 4px;
+    width: 100%;
+    border-radius: 10px;
+    background: $base;
+  }
+
+  .nav-container .hamburger-lines .line1 {
+    transform-origin: 0% 0%;
+    transition: transform 0.4s ease-in-out;
+  }
+
+  .nav-container .hamburger-lines .line2 {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .nav-container .hamburger-lines .line3 {
+    transform-origin: 0% 100%;
+    transition: transform 0.4s ease-in-out;
+  }
+
+  .navbar .menu-items {
+    margin-top: 0;
+    padding-top: 120px;
+    background-color: $greyShade;
+    height: 100vh;
+    width: 100%;
+    transform: translate(-150%);
+    display: flex;
+    flex-direction: column;
+    margin-left: -40px;
+    padding-left: 50px;
+    transition: transform 0.5s ease-in-out;
+    text-align: center;
+  }
+
+  .navbar .menu-items li {
+    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-bottom: 1px solid $baseLight;
+  }
+
+  .nav-container input[type="checkbox"]:checked ~ .menu-items {
+    transform: translateX(0);
+  }
+
+  .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+    transform: rotate(45deg);
+  }
+
+  .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+    transform: scaleY(0);
+  }
+
+  .nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+    transform: rotate(-45deg);
+  }
+
+  .filters {
+    text-align: center;
+
+    .filter-label {
+      margin: 0;
+      color: $base;
+    }
+    .stores-select {
+      height: 350px;
+      min-width: 200px;
+
+      font-size: 20px;
+      background-color: $base;
+      overflow: scroll;
+      overflow-x: hidden;
+      cursor: pointer;
+
+      .card {
+        color: $greyShade;
+        cursor: pointer;
+        &:hover {
+          color: $base;
+          background-color: $greyShade;
+        }
+      }
+    }
+  }
+  .priceSlider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     color: $base;
-    font-size: 20px;
+    text-align: center;
+    label {
+      font-size: 20px;
+      color: $base;
+    }
+
+    output {
+      color: $base;
+      font-size: 20px;
+    }
+  }
+
+  .search-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 20px;
+    .searchBar {
+      height: 30px;
+      width: 500px;
+      font-size: 16px;
+      border: none;
+      color: $base;
+    }
+    .search {
+      height: 30px;
+      width: max-content;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
   }
 }

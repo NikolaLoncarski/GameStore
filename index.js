@@ -12,6 +12,7 @@ const spinerAnim = document.querySelector(".spinner");
 const maxPrice = document.querySelector(".max-price");
 const searchGames = document.querySelector(".searchBar");
 const checkboxMenu = document.querySelector(".checkbox");
+const hamMenuItems = document.querySelector(".menu-items");
 
 ////-----Displays on wrong search query-------////
 const errorContainer = document.querySelector(".error");
@@ -21,13 +22,11 @@ createError.textContent = "No Results Found";
 
 /////////--------------------- / /---------------////////
 const hamMenuCheck = function (e) {
-  if (
-    e.target != checkboxMenu &&
-    e.target != priceSlider &&
-    e.target != priceSlider.children
-  ) {
+  if (e.target != checkboxMenu && e.target != maxPrice) {
+    console.log(hamMenuItems);
     checkboxMenu.checked = false;
     document.removeEventListener("click", hamMenuCheck);
+    console.log("k");
   }
 };
 
@@ -211,6 +210,7 @@ const createCards = (cardElements) => {
     if (cart.some((i) => i.gameID === gameID)) {
       gameSaved.style.display = "block";
       gameCard.style.border = "2px solid #6b21a8 ";
+      unwishBtn.style.display = "block";
     } else {
       gameSaved.style.display = "none";
     }
@@ -262,6 +262,7 @@ const createCards = (cardElements) => {
     gameInfoLink.append(metacriticIcon);
 
     saveButton.addEventListener("click", () => {
+      unwishBtn.style.display = "block";
       if (cart.some((i) => i.gameID === gameID)) {
         gameCard.style.animationDelay = "0s";
         gameCard.style.animationName = "allreadySaved";
@@ -282,12 +283,14 @@ const createCards = (cardElements) => {
 
     unwishBtn.addEventListener("click", (e) => {
       e.preventDefault();
+
       const localStorageGames = JSON.parse(localStorage.getItem("gamesInCart"));
       const removeGame = localStorageGames.filter(
         (item) => item.title !== title
       );
       localStorage.setItem("gamesInCart", JSON.stringify(removeGame));
       if (removeGame) {
+        unwishBtn.style.display = "none";
         gameCard.style.border = "none";
         cart = JSON.parse(localStorage.getItem("gamesInCart"));
         gameSaved.style.display = "none";
