@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="css/index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+      rel="stylesheet"
+    />
 
     <script
       src="https://kit.fontawesome.com/a81cb52012.js"
@@ -18,8 +22,57 @@
   </head>
   <body>
     <header>
-      <div class="main-nav">
-        <div class="search-container">
+      <nav>
+        <div class="navbar">
+          <div class="container nav-container">
+            <input
+              class="checkbox"
+              type="checkbox"
+              name="hamburgerMenuCheckbox"
+              id=""
+            />
+            <div class="hamburger-lines">
+              <span class="line line1"></span>
+              <span class="line line2"></span>
+              <span class="line line3"></span>
+            </div>
+
+            <ul class="menu-items">
+              <li class="priceSlider">
+                <label for="price">Maximum Game Price</label>
+                <input
+                  type="range"
+                  class="max-price"
+                  value="50"
+                  min="0"
+                  max="50"
+                  step="1"
+                  name="price"
+                  oninput="this.nextElementSibling.value = this.value"
+                /><output>50</output>
+              </li>
+
+              <li class="filters">
+                <h4 class="filter-label">chose a store</h4>
+                <div class="stores-select"></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="navLogo">
+          <img src="./SiteIcon.png" alt="I wish icon" id="logo" />
+          <h1>I Wish</h1>
+        </div>
+
+        
+        <div class="cartHolder">
+          <div class="numbOfGames"></div>
+          <button class="Cart"><a href="cart.html">Whish List</a></button>
+        </div>
+      </div>
+
+</nav>
+      <div class="search-container">
           <input
             type="text"
             class="searchBar"
@@ -27,34 +80,8 @@
           />
           <button type="submit" class="search">Search</button>
         </div>
-        <div class="cartHolder">
-          <div class="numbOfGames"></div>
-          <button class="Cart"><a href="cart.html">Cart</a></button>
-        </div>
-      </div>
-      <div class="searchBy">
-        <h2>Search Stores</h2>
-        <nav>
-          <div class="priceSlider">
-            <label for="price">Maximum Game Price</label>
-            <input
-              type="range"
-              class="max-price"
-              value="50"
-              min="0"
-              max="50"
-              step="1"
-              name="price"
-              oninput="this.nextElementSibling.value = this.value"
-            /><output>50</output>
-          </div>
-          <div class="filters">
-            <h3 class="filter-label">Select Store</h3>
-            <div class="stores-select"></div>
-          </div>
-        </nav>
-      </div>
     </header>
+
     <main>
       <h3 class="error"></h3>
       <div class="store-container">
@@ -68,11 +95,8 @@
 
       <div class="gameCards"></div>
 
-      <div class="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+      <div class="spinner">
+        <div class="spinner1"></div>
       </div>
     </main>
   </body>

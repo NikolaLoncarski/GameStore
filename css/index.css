@@ -1,5 +1,5 @@
 * {
-  font-family: "Roboto", sans-serif;
+  font-family: "Michroma", sans-serif;
   font-weight: 400;
   text-transform: uppercase;
   box-sizing: border-box;
@@ -67,7 +67,7 @@ main .error h2 {
   width: fit-content;
 }
 
-.whishlist-info .moneySaved .totalSaved, .whishlist-info .total .totalPrice, .main-nav .cartHolder .numbOfGames {
+.whishlist-info .moneySaved .totalSaved, .whishlist-info .total .totalPrice, header nav .cartHolder .numbOfGames {
   display: inline-block;
   height: 40px;
   width: 60px;
@@ -82,7 +82,6 @@ main .error h2 {
 button {
   width: fit-content;
   height: 30px;
-  font-size: 20px;
   color: #6b21a8;
   border: 1px solid #8b5cf6;
   cursor: pointer;
@@ -90,6 +89,7 @@ button {
 button a {
   text-decoration: none;
   color: #6b21a8;
+  margin: 0;
 }
 button a:hover {
   color: #cbd5e1;
@@ -137,185 +137,157 @@ main {
     font-size: 20px;
   }
 }
-.main-nav {
-  width: 100svw;
-  width: 100vw;
+.Cart {
+  width: 100px;
+}
+.Cart a {
+  font-size: 10px;
+}
+
+header {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
   align-items: center;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  justify-content: center;
+  flex-direction: column;
 }
-.main-nav .search-container {
-  width: 50%;
+header nav {
   display: flex;
-  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding-bottom: 20px;
 }
-.main-nav .search-container .searchBar {
-  height: 50px;
-  width: 80%;
-  font-size: 30px;
-  border: none;
-  color: #6b21a8;
+header nav #navLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
 }
-.main-nav .search-container .search {
+header nav #navLogo img {
   height: 50px;
-  width: 20%;
-  border: none;
-  font-size: 30px;
+  width: 50px;
+}
+header nav #navLogo h1 {
+  display: inline;
+  margin: 0;
+  width: max-content;
+  font-weight: 800;
+}
+header nav #navLogo:hover {
   cursor: pointer;
-  flex-shrink: 0;
+  filter: invert(48%) sepia(153%) saturate(3207%) hue-rotate(230deg) brightness(95%) contrast(90%);
 }
-.main-nav .cartHolder {
+header nav .cartHolder {
+  padding-right: 3rem;
   height: 50px;
-  width: 150px;
+  width: 250px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
 }
-@media (max-width: 1440px) {
-  .main-nav {
-    margin-top: 1em;
-    justify-content: space-around;
-  }
-  .main-nav .search-container {
-    width: 60%;
-    height: 20px;
-  }
-  .main-nav .search-container .searchBar {
-    height: 50px;
-    width: 80%;
-    font-size: 20px;
-  }
-  .main-nav .search-container .search {
-    height: 50px;
-    min-width: 100px;
-    font-size: 20px;
-  }
-  .main-nav .cartHolder {
-    height: 50px;
-    width: 150px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-  }
+header nav .cartHolder .cart {
+  width: max-content;
+  font-size: 12px;
 }
-@media (max-width: 768px) {
-  .main-nav {
-    flex-direction: column;
-  }
-  .main-nav .search-container {
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  .main-nav .search-container .searchBar {
-    height: 50px;
-    width: 80%;
-    font-size: 20px;
-    border: none;
-    color: #6b21a8;
-  }
-  .main-nav .search-container .search {
-    height: 30px;
-    width: 20%;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    flex-shrink: 0;
-  }
-  .main-nav .cartHolder {
-    height: 25px;
-    width: 75px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-  }
+header .navbar {
+  width: 10%;
+  box-shadow: 0 1px 4px rgba(146, 161, 176, 0.15);
 }
-@media (max-width: 768px) and (max-width: 1440px) {
-  .main-nav {
-    height: 100px;
-    margin-top: 1em;
-    justify-content: space-around;
-  }
-  .main-nav .search-container {
-    width: 60%;
-    height: 20px;
-  }
-  .main-nav .search-container .searchBar {
-    height: 50px;
-    width: 80%;
-    font-size: 16px;
-  }
-  .main-nav .search-container .search {
-    height: 50px;
-    min-width: 100px;
-    font-size: 16px;
-  }
-  .main-nav .cartHolder {
-    height: 50px;
-    width: 150px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-  }
+header .navbar .menu-items {
+  display: flex;
 }
-@media (max-width: 440px) {
-  .main-nav {
-    padding-top: 1em;
-    flex-direction: column;
-    gap: 1em;
-    height: fit-content;
-  }
-  .main-nav .search-container {
-    width: 90%;
-  }
+header .navbar .nav-container li {
+  list-style: none;
 }
-.searchBy {
+header .nav-container {
+  display: block;
   position: relative;
-  display: inline-block;
-  cursor: pointer;
-  left: 10%;
-  transform: translateX(-10%);
+  height: 60px;
+  width: fit-content;
 }
-.searchBy h2 {
-  border: 1px solid #cbd5e1;
-  border-bottom: none;
-  margin: 0;
-  padding: 10px;
-}
-.searchBy nav {
-  transform: scale(0);
-  transition: transform 0s linear 0.6s;
+header .nav-container .checkbox {
   position: absolute;
-  background-color: #f9f9f9;
-  min-width: 200px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  padding: 12px 16px;
+  display: block;
+  height: 32px;
+  width: 32px;
+  top: 25px;
+  left: 20px;
   z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+}
+header .nav-container .hamburger-lines {
+  display: block;
+  height: 26px;
+  width: 32px;
+  position: absolute;
+  top: 25px;
+  left: 20px;
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  background-color: #cbd5e1;
-  gap: 1em;
-  height: 60vh;
+  justify-content: space-between;
 }
-.searchBy nav .filters {
+header .nav-container .hamburger-lines .line {
+  display: block;
+  height: 4px;
+  width: 100%;
+  border-radius: 10px;
+  background: #6b21a8;
+}
+header .nav-container .hamburger-lines .line1 {
+  transform-origin: 0% 0%;
+  transition: transform 0.4s ease-in-out;
+}
+header .nav-container .hamburger-lines .line2 {
+  transition: transform 0.2s ease-in-out;
+}
+header .nav-container .hamburger-lines .line3 {
+  transform-origin: 0% 100%;
+  transition: transform 0.4s ease-in-out;
+}
+header .navbar .menu-items {
+  margin-top: 0;
+  padding-top: 120px;
+  background-color: #cbd5e1;
+  height: 100vh;
+  width: 100%;
+  transform: translate(-150%);
+  display: flex;
+  flex-direction: column;
+  margin-left: -40px;
+  padding-left: 50px;
+  transition: transform 0.5s ease-in-out;
   text-align: center;
 }
-.searchBy nav .filters .filter-label {
+header .navbar .menu-items li {
+  margin-bottom: 1.2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  border-bottom: 1px solid #8b5cf6;
+}
+header .nav-container input[type=checkbox]:checked ~ .menu-items {
+  transform: translateX(0);
+}
+header .nav-container input[type=checkbox]:checked ~ .hamburger-lines .line1 {
+  transform: rotate(45deg);
+}
+header .nav-container input[type=checkbox]:checked ~ .hamburger-lines .line2 {
+  transform: scaleY(0);
+}
+header .nav-container input[type=checkbox]:checked ~ .hamburger-lines .line3 {
+  transform: rotate(-45deg);
+}
+header .filters {
+  text-align: center;
+}
+header .filters .filter-label {
   margin: 0;
   color: #6b21a8;
 }
-.searchBy nav .filters .stores-select {
+header .filters .stores-select {
   height: 350px;
   min-width: 200px;
   font-size: 20px;
@@ -324,44 +296,86 @@ main {
   overflow-x: hidden;
   cursor: pointer;
 }
-.searchBy nav .filters .stores-select .card {
+header .filters .stores-select .card {
   color: #cbd5e1;
   cursor: pointer;
 }
-.searchBy nav .priceSlider {
+header .filters .stores-select .card:hover {
+  color: #6b21a8;
+  background-color: #cbd5e1;
+}
+header .priceSlider {
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #6b21a8;
   text-align: center;
 }
-.searchBy nav .priceSlider label {
+header .priceSlider label {
   font-size: 20px;
   color: #6b21a8;
 }
-.searchBy nav .priceSlider output {
+header .priceSlider output {
   color: #6b21a8;
   font-size: 20px;
 }
-
-.searchBy:hover nav {
-  transform: scale(1);
-  transition-delay: 0s;
+header .search-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 20px;
+}
+header .search-container .searchBar {
+  height: 30px;
+  width: 500px;
+  font-size: 16px;
+  border: none;
+  color: #6b21a8;
+}
+header .search-container .search {
+  height: 30px;
+  width: max-content;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
 }
 
+@media (max-width: 440px) {
+  header .search-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 20px;
+    width: 100%;
+  }
+  header .search-container .searchBar {
+    height: 30px;
+    width: 300px;
+    font-size: 12px;
+    border: none;
+    color: #6b21a8;
+  }
+  header .search-container .search {
+    height: 30px;
+    width: max-content;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+  }
+}
 .gameCards {
   margin: 2rem auto;
   display: flex;
   flex-direction: row;
-  gap: 3rem;
+  gap: 1rem;
   width: 80%;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
 .gameCards .game {
-  width: 450px;
-  height: 600px;
+  width: 250px;
+  height: 400px;
   display: flex;
   border: 3px solid transparent;
   background-clip: padding-box;
@@ -373,16 +387,55 @@ main {
   justify-content: space-around;
   align-items: center;
   background-color: #1b2028;
-  background-image: linear-gradient(135deg, rgba(117, 46, 124, 0.35), rgba(115, 74, 88, 0.1) 15%, #1b2028 20%, #1b2028 100%);
+  background-image: linear-gradient(135deg, rgba(202, 73, 214, 0.35), rgba(115, 74, 88, 0.1) 15%, #1b2028 20%, #1b2028 100%);
   animation: 0.3s linear forwards;
   animation: opacityAnim 0.2s forwards;
 }
-.gameCards .imageContainer {
-  height: 50%;
+.gameCards .game .gameSaved {
+  position: absolute;
+  z-index: 2;
+  height: fit-content;
+  width: 100px;
+  height: 30px;
+  top: 0%;
+  display: none;
+  opacity: 0;
+  background-color: #6b21a8;
+  font-weight: bolder;
+  color: #cbd5e1;
+  border: 1px solid white;
+  animation: savedAnim 0.3s linear forwards;
+}
+.gameCards .game .gameSaved p {
+  font-size: 16px;
+  margin: 0;
+}
+@keyframes savedAnim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.gameCards .gameCardHeading {
+  position: absolute;
+  top: 20px;
+  left: 2rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 350px;
+  justify-content: space-between;
+  width: 100%;
+}
+.gameCards .gameCardHeading .imageContainer {
+  height: 40%;
   width: 100%;
   position: relative;
 }
-.gameCards .imageContainer img {
+.gameCards .gameCardHeading .imageContainer img {
   border-radius: 12px;
   min-height: 50%;
   min-width: 50%;
@@ -393,62 +446,125 @@ main {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.gameCards .gameTitle {
-  font-size: 25px;
+.gameCards .gameCardHeading .gameTitle {
+  font-size: 12px;
   font-weight: 700;
   margin: 0;
 }
-.gameCards .gamePrices {
+.gameCards .gameInfoBox {
+  opacity: 0;
   display: flex;
-  flex-direction: row;
+  height: 100%;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 1em;
-  font-size: 20px;
-  box-shadow: inset 0 0 10px #492104;
+  justify-content: center;
+  gap: 15px;
+  transition: 0.2s ease-in-out;
+  z-index: 2;
 }
-.gameCards .gamePrices .normPrice {
-  color: red;
+.gameCards .gameInfoBox .gamePrices {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 0.2em;
+  font-size: 14px;
+  height: 40%;
 }
-.gameCards .gamePrices .moneySaved {
-  color: #cbd5e1;
+.gameCards .gameInfoBox .gamePrices span {
+  color: #8b5cf6;
 }
-.gameCards .gamePrices .price {
-  color: #cbd5e1;
-}
-.gameCards .gameDate {
-  font-size: 20px;
-}
-.gameCards a {
-  font-size: 30px;
-  text-decoration: none;
-  color: #cbd5e1;
-}
-.gameCards a:hover {
+.gameCards .gameInfoBox .gameDate {
+  font-size: 16px;
   color: #6b21a8;
 }
-.gameCards .gameSaved {
-  position: absolute;
-  z-index: 4;
-  height: fit-content;
-  width: 200px;
-  top: 0%;
-  right: -10%;
-  display: none;
-  opacity: 0;
-  transform: rotate(30deg);
-  background-color: #6b21a8;
-  font-weight: bolder;
+.gameCards .gameInfoBox .metacritic {
+  margin-top: 5px;
+  font-size: 20px;
+  text-decoration: none;
+  width: 100px;
+  height: 30px;
   color: #cbd5e1;
-  border: 1px solid white;
-  animation: savedAnim 0.3s linear forwards;
 }
-@keyframes savedAnim {
-  from {
-    opacity: 0;
+.gameCards .gameInfoBox .metacritic img {
+  height: 100%;
+  width: 100%;
+}
+.gameCards .gameInfoBox .metacritic:hover {
+  transform: scale(1.1);
+}
+.gameCards .gameInfoBox .saveButton {
+  margin-top: 5px;
+  text-decoration: none;
+  position: relative;
+  border: none;
+  font-size: 14px;
+  font-family: inherit;
+  color: #fff;
+  width: 8em;
+  height: 2.5em;
+  line-height: 2em;
+  text-align: center;
+  background: linear-gradient(90deg, #6b21a8, #8b5cf6, #a181ea, #6b21a8);
+  background-size: 300%;
+  border-radius: 30px;
+  z-index: 1;
+  color: #cbd5e1;
+}
+.gameCards .gameInfoBox button:hover {
+  animation: ani 8s linear infinite;
+  border: none;
+}
+@keyframes ani {
+  0% {
+    background-position: 0%;
   }
-  to {
-    opacity: 1;
+  100% {
+    background-position: 400%;
+  }
+}
+.gameCards .gameInfoBox .saveButton:before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  background: llinear-gradient(90deg, #6b21a8, #8b5cf6, #cbd5e1);
+  background-size: 400%;
+  border-radius: 35px;
+  transition: 1s;
+}
+.gameCards .gameInfoBox .saveButton:hover::before {
+  filter: blur(20px);
+}
+.gameCards .gameInfoBox .saveButton:active {
+  background: linear-gradient(32deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+}
+.gameCards .game:hover > .gameInfoBox {
+  opacity: 1;
+}
+.gameCards .game:hover > .gameCardHeading {
+  height: 65%;
+  filter: blur(7px) brightness(40%);
+  animation: anim 3s infinite;
+}
+.gameCards .unwishBtn {
+  display: none;
+  position: absolute;
+  bottom: 0;
+}
+@keyframes anim {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 
@@ -488,45 +604,28 @@ main {
     width: 150px;
   }
 }
-.lds-ring {
+.spinner {
   position: absolute;
-  left: 50%;
-  transform: translate(-50%);
-  width: 80px;
-  height: 80px;
-  display: none;
+  background-image: linear-gradient(rgb(186, 66, 255) 35%, rgb(0, 225, 255));
+  width: 100px;
+  height: 100px;
+  animation: spinning82341 1.7s linear infinite;
+  text-align: center;
+  border-radius: 50px;
+  filter: blur(1px);
+  box-shadow: 0px -5px 20px 0px rgb(186, 66, 255), 0px 5px 20px 0px rgb(0, 225, 255);
 }
 
-.lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid #6b21a8;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #6b21a8 transparent transparent transparent;
+.spinner1 {
+  background-color: rgb(36, 36, 36);
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  filter: blur(10px);
 }
 
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-
-@keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
+@keyframes spinning82341 {
+  to {
     transform: rotate(360deg);
   }
 }
@@ -583,4 +682,97 @@ main {
   color: #cbd5e1;
   font-size: 20px;
   top: 0;
+}
+.whishlist-info #navLogo {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+.whishlist-info #navLogo img {
+  height: 50px;
+  width: 50px;
+}
+.whishlist-info #navLogo h1 {
+  display: inline;
+  margin: 0;
+  width: max-content;
+  font-weight: 800;
+}
+.whishlist-info #navLogo:hover {
+  cursor: pointer;
+  filter: invert(48%) sepia(153%) saturate(3207%) hue-rotate(230deg) brightness(95%) contrast(90%);
+}
+
+.wish {
+  width: 250px;
+  height: 400px;
+  display: flex;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  text-align: center;
+  color: white;
+  border-radius: 8px;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #1b2028;
+  background-image: linear-gradient(135deg, rgba(202, 73, 214, 0.35), rgba(115, 74, 88, 0.1) 15%, #1b2028 20%, #1b2028 100%);
+  animation: 0.3s linear forwards;
+  animation: opacityAnim 0.2s forwards;
+}
+.wish .imageContainer {
+  height: 40%;
+  width: 100%;
+  position: relative;
+}
+.wish .imageContainer img {
+  border-radius: 12px;
+  min-height: 50%;
+  min-width: 50%;
+  max-height: 100%;
+  max-width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.wish .gameTitle {
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0;
+}
+.wish .gamePrices {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 0.2em;
+  font-size: 14px;
+  height: 40%;
+}
+.wish .gamePrices span {
+  color: #8b5cf6;
+}
+.wish .gameDate {
+  font-size: 16px;
+  color: #6b21a8;
+}
+.wish .metacritic {
+  margin-top: 5px;
+  font-size: 20px;
+  text-decoration: none;
+  width: 100px;
+  height: 30px;
+  color: #cbd5e1;
+}
+.wish .metacritic img {
+  height: 100%;
+  width: 100%;
+}
+.wish .metacritic:hover {
+  transform: scale(1.1);
 }

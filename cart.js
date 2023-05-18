@@ -38,7 +38,7 @@ const displayCartGames = cartData.map((element) => {
   }
   ////overall card div
   const gameCard = document.createElement("div");
-  gameCard.classList.add("game");
+  gameCard.classList.add("wish");
   gameCard.dataset.id = `${dealID}`;
 
   const gameTitle = document.createElement("h4");
@@ -59,13 +59,12 @@ const displayCartGames = cartData.map((element) => {
   //--------------Prices ------------//
   const gamePrices = document.createElement("div");
   gamePrices.classList.add("gamePrices");
-
   const normPrice = document.createElement("span");
-  normPrice.classList.add("normPrice");
+
   normPrice.innerText = `Normal Price:${normalPrice || salePrice}$`;
 
   const price = document.createElement("span");
-  price.classList.add("price");
+
   price.innerText = `Current Price:${salePrice}$`;
 
   const moneySaved = document.createElement("span");
@@ -88,23 +87,29 @@ const displayCartGames = cartData.map((element) => {
     gameReleaseDate.innerText = "Release Date:N/A";
   }
 
-  gameCard.appendChild(gameTitle);
-  gameCard.prepend(imageContainer);
+  gameCard.append(deleteButton);
+  gameCard.append(imageContainer);
+  gameCard.append(gameTitle);
   gameCard.append(gamePrices);
   gameCard.append(gameReleaseDate);
-  gameCard.append(deleteButton);
-  gameCards.appendChild(gameCard);
-
-  ///Check if there is a realse date information
+  gameCards.append(gameCard);
   const gameInfoLink = document.createElement("a");
+  const metacriticIcon = document.createElement("img");
+  gameInfoLink.classList.add("metacritic");
+  metacriticIcon.src = "./metacritic.png";
+  metacriticIcon.alt = "Metacritic icon";
+
   gameInfoLink.href = `https://www.metacritic.com${metacriticLink}`;
   if (metacriticLink) {
     gameInfoLink.target = "_blank";
-    gameInfoLink.text = "More Information";
   } else {
-    gameInfoLink.text = "More Information not available";
+    gameInfoLink.style.pointerEvents = "none";
   }
-  gameCard.appendChild(gameInfoLink);
+
+  ///Check if there is a realse date information
+
+  gameInfoLink.appendChild(metacriticIcon);
+  gameCard.append(gameInfoLink);
   ////------deletes the element-------//////
   deleteButton.addEventListener("click", () => {
     total.pop();

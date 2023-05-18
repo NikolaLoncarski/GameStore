@@ -8,21 +8,39 @@ const storeName = document.querySelector(".storeName");
 const gameCards = document.querySelector(".gameCards");
 const menuButton = document.querySelector(".menuButton");
 const numbOfGames = document.querySelector(".numbOfGames");
-const spinerAnim = document.querySelector(".lds-ring");
+const spinerAnim = document.querySelector(".spinner");
 const maxPrice = document.querySelector(".max-price");
 const searchGames = document.querySelector(".searchBar");
+const checkboxMenu = document.querySelector(".checkbox");
+const hamMenuItems = document.querySelector(".menu-items");
 
 ////-----Displays on wrong search query-------////
 const errorContainer = document.querySelector(".error");
 const createError = document.createElement("h2");
+
 createError.textContent = "No Results Found";
 
-/////////-----------------------------------////////
+/////////--------------------- / /---------------////////
+const hamMenuCheck = function (e) {
+  if (e.target != checkboxMenu && e.target != maxPrice) {
+    console.log(hamMenuItems);
+    checkboxMenu.checked = false;
+    document.removeEventListener("click", hamMenuCheck);
+    console.log("k");
+  }
+};
+
+checkboxMenu.addEventListener("click", function () {
+  if (this.checked) {
+    document.addEventListener("click", hamMenuCheck);
+  }
+});
 
 const searchBtn = document.querySelector(".search");
 let gameInfo = [];
 let maximumPrice = 50;
 let cart = [];
+
 if (!localStorage.getItem("gamesInCart")) {
   cart = [];
 } else {
@@ -89,7 +107,7 @@ const fetchGames = async (id, price) => {
   spinerAnim.style.display = "none";
   storeImageContainer.style.opacity = "1";
   const gameData = await fetchGameData.json();
-
+  console.log(gameData);
   gamesData(gameData);
 
   createCards(gameInfo[0]);
@@ -137,6 +155,7 @@ const createCards = (cardElements) => {
       discount = "0";
     }
     ////overall card div
+
     const gameCard = document.createElement("div");
     gameCard.classList.add("game");
     gameCard.dataset.id = `${dealID || gameID}`;
@@ -150,37 +169,57 @@ const createCards = (cardElements) => {
 
     const gameThumb = document.createElement("img");
     gameThumb.src = `${thumb}`;
+    const gameHeading = document.createElement("div");
+    gameHeading.classList.add("gameCardHeading");
 
-    imageContainer.append(gameThumb);
+    const gameInfoBox = document.createElement("div");
+    gameInfoBox.classList.add("gameInfoBox");
+
     //--------------Prices ------------//
     const gamePrices = document.createElement("div");
     gamePrices.classList.add("gamePrices");
 
     const normPrice = document.createElement("span");
     normPrice.classList.add("normPrice");
-    normPrice.innerText = `Normal Price:${normalPrice || salePrice}`;
+    normPrice.innerText = `Price on release: ${normalPrice || salePrice}$`;
 
     const price = document.createElement("span");
     price.classList.add("price");
-    price.innerText = `Current Price:${salePrice}$`;
+    price.innerText = `Current Price: ${salePrice}$`;
+
+    const mainPrice = document.createElement("span");
+    mainPrice.classList.add("mainPrice");
+    mainPrice.textContent = `${salePrice}$`;
 
     const moneySaved = document.createElement("span");
     moneySaved.classList.add("moneySaved");
-    moneySaved.innerText = `Money Saved:${discount}%`;
+    moneySaved.innerText = `Discount: ${discount} %`;
 
     const saveButton = document.createElement("button");
     saveButton.classList.add("saveButton");
-    saveButton.innerText = "Save to Cart";
+    saveButton.innerText = "Wish";
+
+    const unwishBtn = document.createElement("button");
+    unwishBtn.classList.add("unwishBtn");
+    unwishBtn.textContent = "unwish";
 
     const gameSaved = document.createElement("div");
     gameSaved.classList.add("gameSaved");
-    gameSaved.innerHTML = `<p>Game Saved to Cart</p>`;
+    gameSaved.innerHTML = `<p>Wished</p>`;
 
     if (cart.some((i) => i.gameID === gameID)) {
       gameSaved.style.display = "block";
+      gameCard.style.border = "2px solid #6b21a8 ";
+      unwishBtn.style.display = "block";
     } else {
       gameSaved.style.display = "none";
     }
+
+    ///Game card pre-hover State
+    imageContainer.append(gameThumb);
+    gameHeading.append(imageContainer);
+    gameHeading.append(gameTitle);
+    gameHeading.append(mainPrice);
 
     gamePrices.appendChild(normPrice);
     gamePrices.appendChild(moneySaved);
@@ -190,45 +229,73 @@ const createCards = (cardElements) => {
     gameReleaseDate.classList.add("gameDate");
 
     if (date > 0) {
-      gameReleaseDate.innerText = `Release Date:${date.toLocaleDateString(
+      gameReleaseDate.innerText = `Release Date : ${date.toLocaleDateString(
         "en-US"
       )}`;
     } else {
       gameReleaseDate.innerText = "Release Date:N/A";
     }
 
-    gameCard.appendChild(gameTitle);
-    gameCard.prepend(imageContainer);
-    gameCard.append(gamePrices);
-    gameCard.append(gameReleaseDate);
-    gameCard.append(saveButton);
-    gameCard.appendChild(gameSaved);
-    gameCards.appendChild(gameCard);
-
     ///Check if there is a realse date information
     const gameInfoLink = document.createElement("a");
+    const metacriticIcon = document.createElement("img");
+    gameInfoLink.classList.add("metacritic");
+    metacriticIcon.src = "./metacritic.png";
+    metacriticIcon.alt = "Metacritic icon";
+
     gameInfoLink.href = `https://www.metacritic.com${metacriticLink}`;
     if (metacriticLink) {
       gameInfoLink.target = "_blank";
-      gameInfoLink.text = "More Information";
     } else {
       gameInfoLink.style.pointerEvents = "none";
       gameInfoLink.text = "More Info not available";
     }
-    gameCard.appendChild(gameInfoLink);
+    gameCard.prepend(gameHeading);
+    gameCard.append(gameInfoBox);
+    gameInfoBox.append(gamePrices);
+    gameInfoBox.append(gameReleaseDate);
+    gameInfoBox.append(saveButton);
+    gameInfoBox.append(gameInfoLink);
+    gameInfoBox.append(unwishBtn);
+    gameCard.appendChild(gameSaved);
+    gameCards.appendChild(gameCard);
+    gameInfoLink.append(metacriticIcon);
 
     saveButton.addEventListener("click", () => {
+      unwishBtn.style.display = "block";
       if (cart.some((i) => i.gameID === gameID)) {
+        gameCard.style.animationDelay = "0s";
         gameCard.style.animationName = "allreadySaved";
+        gameCard.style.border = "2px solid #6b21a8 ";
+
         setTimeout(() => {
           gameCard.style.animationName = "none";
         }, 300);
       } else {
+        gameCard.style.border = "2px solid #6b21a8 ";
         gameSaved.style.display = "block";
         cart.push(ele);
         localStorage.gamesInCart = JSON.stringify(cart);
 
         numbOfGames.textContent = `${cart.length}`;
+      }
+    });
+
+    unwishBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const localStorageGames = JSON.parse(localStorage.getItem("gamesInCart"));
+      const removeGame = localStorageGames.filter(
+        (item) => item.title !== title
+      );
+      localStorage.setItem("gamesInCart", JSON.stringify(removeGame));
+      if (removeGame) {
+        unwishBtn.style.display = "none";
+        gameCard.style.border = "none";
+        cart = JSON.parse(localStorage.getItem("gamesInCart"));
+        gameSaved.style.display = "none";
+        numbOfGames.textContent = cart.length;
+        console.log(cart);
       }
     });
   });
@@ -298,7 +365,7 @@ const createDeals = (data) => {
     dealPrice.innerText = `${cheapest}`;
 
     const gameLookupBtn = document.createElement("button");
-    gameLookupBtn.classList.add("gameLookupBtn");
+    gameLookupBtn.classList.add("saveButton");
     gameLookupBtn.innerText = "Go to game";
 
     dealInfo.append(externalName);
@@ -352,6 +419,5 @@ const animationDelay = (ele, i) => {
 
 //////----------sets the maximum price on games api call --------///////
 maxPrice.addEventListener("change", () => {
-  console.log(+maxPrice.value);
   maximumPrice = +maxPrice.value;
 });
