@@ -222,3 +222,28 @@ header {
     }
   }
 }
+@media (max-width: 440px) {
+  header {
+    .search-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-bottom: 20px;
+      width: 100%;
+      .searchBar {
+        height: 30px;
+        width: 300px;
+        font-size: 12px;
+        border: none;
+        color: $base;
+      }
+      .search {
+        height: 30px;
+        width: max-content;
+        border: none;
+        font-size: 12px;
+        cursor: pointer;
+      }
+    }
+  }
+}

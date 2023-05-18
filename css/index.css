@@ -67,7 +67,7 @@ main .error h2 {
   width: fit-content;
 }
 
-.whishlist-info .moneySaved .totalSaved, .whishlist-info .total .totalPrice, header nav .cartHolder .numbOfGames, #siteTitle .cartHolder .numbOfGames {
+.whishlist-info .moneySaved .totalSaved, .whishlist-info .total .totalPrice, header nav .cartHolder .numbOfGames {
   display: inline-block;
   height: 40px;
   width: 60px;
@@ -137,137 +137,13 @@ main {
     font-size: 20px;
   }
 }
-#siteTitle #navLogo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1em;
+.Cart {
+  width: 100px;
 }
-#siteTitle #navLogo img {
-  height: 50px;
-  width: 50px;
-}
-#siteTitle #navLogo h1 {
-  display: inline;
-  margin: 0;
-  width: max-content;
-  font-weight: 800;
-}
-#siteTitle #navLogo:hover {
-  cursor: pointer;
-  filter: invert(48%) sepia(153%) saturate(3207%) hue-rotate(230deg) brightness(95%) contrast(90%);
-}
-#siteTitle .search-container {
-  width: 30%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-#siteTitle .search-container .searchBar {
-  height: 30px;
-  width: 80%;
-  font-size: 16px;
-  border: none;
-  color: #6b21a8;
-}
-#siteTitle .search-container .search {
-  height: 30px;
-  width: max-content;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-}
-#siteTitle .cartHolder {
-  height: 50px;
-  width: 200px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: row;
-}
-#siteTitle .cartHolder .cart {
-  width: max-content;
-  font-size: 12px;
+.Cart a {
+  font-size: 10px;
 }
 
-@media (max-width: 1440px) {
-  .main-nav {
-    margin-top: 1em;
-    justify-content: space-around;
-  }
-  .main-nav .search-container {
-    width: 60%;
-    height: 20px;
-  }
-  .main-nav .search-container .searchBar {
-    height: 50px;
-    width: 80%;
-    font-size: 14px;
-  }
-  .main-nav .search-container .search {
-    height: 50px;
-    min-width: 100px;
-    font-size: 20px;
-  }
-}
-@media (max-width: 768px) {
-  .main-nav {
-    flex-direction: column;
-  }
-  .main-nav .search-container {
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  .main-nav .search-container .searchBar {
-    height: 50px;
-    width: 80%;
-    font-size: 20px;
-    border: none;
-    color: #6b21a8;
-  }
-  .main-nav .search-container .search {
-    height: 30px;
-    width: 20%;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    flex-shrink: 0;
-  }
-}
-@media (max-width: 768px) and (max-width: 1440px) {
-  .main-nav {
-    height: 100px;
-    margin-top: 1em;
-    justify-content: space-around;
-  }
-  .main-nav .search-container {
-    width: 60%;
-    height: 20px;
-  }
-  .main-nav .search-container .searchBar {
-    height: 50px;
-    width: 80%;
-    font-size: 16px;
-  }
-  .main-nav .search-container .search {
-    height: 50px;
-    min-width: 100px;
-    font-size: 16px;
-  }
-}
-@media (max-width: 768px) and (max-width: 440px) {
-  .main-nav {
-    padding-top: 1em;
-    flex-direction: column;
-    gap: 1em;
-    height: fit-content;
-  }
-  .main-nav .search-container {
-    width: 90%;
-  }
-}
 header {
   display: flex;
   align-items: center;
@@ -464,6 +340,29 @@ header .search-container .search {
   cursor: pointer;
 }
 
+@media (max-width: 440px) {
+  header .search-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 20px;
+    width: 100%;
+  }
+  header .search-container .searchBar {
+    height: 30px;
+    width: 300px;
+    font-size: 12px;
+    border: none;
+    color: #6b21a8;
+  }
+  header .search-container .search {
+    height: 30px;
+    width: max-content;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+  }
+}
 .gameCards {
   margin: 2rem auto;
   display: flex;
